@@ -1,13 +1,34 @@
 <template>
-	<div class="max-w-xl mx-auto flex flex-col gap-8 px-8 py-12 md:py-20">
-		<div>
-			<h1 class="mb-4 bg-gradient-to-br from-purple-800 to-pink-800 bg-clip-text text-5xl font-bold text-transparent">
-				Hello
-			</h1>
+	<header class="mb-18">
+		<img src="/logo.svg" alt="Cinewatch" class="h-5" />
+	</header>
 
-			<p>This is a new project</p>
+	<main class="max-w-3xl mx-auto">
+		<h1 class="text-4xl text-purple-800 font-bold mb-4">
+			Cinewatch
+		</h1>
+
+		<p class="max-w-prose">
+			Look up listings from your favourite branch of Cineworld, select the films you want to see, and let Cinewatch work out the most efficient way to watch them.
+		</p>
+
+		<div class="flex gap-4 items-start mt-10">
+			<form-field placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068">
+				Cinema listing URL
+
+				<template #help>
+					The URL of the page that lists the film times at your chosen cinema, e.g.
+					<link-tag href="https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" :external="true">
+						https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068
+					</link-tag>
+				</template>
+			</form-field>
+
+			<ui-button class="button--primary shrink-0 mt-7">
+				Find films
+			</ui-button>
 		</div>
-	</div>
+	</main>
 </template>
 
 <script setup>
