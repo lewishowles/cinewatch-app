@@ -1,12 +1,9 @@
-# Boilerplate
+# Cinewatch
 
-A starting point for Vue-based projects, incorporating a number of customisations to the base Vue scaffold that I have come to prefer, including:
+In conjunction with [`cinewatch-api`]("https://github.com/lewishowles/cinewatch-api"), Cinewatch provides a quick and easy way to find the best way to watch multiple films in a single day, minimising the time spent "waiting" between films.
 
-- Extensive eslint configuration
-- Additional aliases in Vite
-- Customised Tailwind configuration and starter CSS
-- Custom Vitest and Cypress configuration
-- Custom Vitest and Cypress commands to simplify the component mounting process
-- `simple-git-hooks` integration
-- Removed unused files
-- Updated .gitignore
+Cinewatch will show the best options, including options where not all films can be seen, so that you can make an informed decision, and will then provide quick-links to book the appropriate films at the selected times.
+
+## Limitations
+
+Cinewatch currently only supports Cineworld. As Cinemas don't provide an accessible API, `cinewatch-api` retrieves data by scraping the appropriate details from the Cineworld website. As each cinema website is vastly different, and would need a custom implementation, and since my cinema of choice is Cineworld, this is the only chain for which a scraper has been written.
