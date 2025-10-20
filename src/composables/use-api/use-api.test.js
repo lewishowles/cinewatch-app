@@ -58,6 +58,18 @@ describe("use-api", () => {
 			expect(fetch).toHaveBeenCalledWith("http://localhost:3000/api/test");
 		});
 
+		test("Unwraps the response", async() => {
+			const { get } = useApi();
+
+			fetch.mockResolvedValueOnce({ json: () => ({ data: { my: "data" } }) });
+
+			const response = await get(url);
+
+			await flushPromises();
+
+			expect(response).toEqual({ my: "data" });
+		});
+
 		test("Initialises with isLoading and isReady set to false", () => {
 			const { isLoading, isReady } = useApi();
 

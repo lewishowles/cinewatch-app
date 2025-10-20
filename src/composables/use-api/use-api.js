@@ -1,3 +1,4 @@
+import { get as getPropertyValue } from "@lewishowles/helpers/object";
 import { getFriendlyDisplay } from "@lewishowles/helpers/general";
 import { isNonEmptyString } from "@lewishowles/helpers/string";
 import { ref } from "vue";
@@ -21,14 +22,17 @@ export default function useApi() {
 	 *
 	 * @param  {string}  endpoint
 	 *     The endpoint from which to load data.
+	 * @param  {object}  parameters
+	 *     Any parameters to add as a query string.
 	 */
-	async function get(endpoint) {
+	async function get(endpoint, parameters) {
 		try {
 			isLoading.value = true;
 
-			let response = await fetch(getFinalUrl(endpoint));
+			let response = await fetch(getFinalUrl(endpoint, parameters));
 
-			response = response.json();
+			response = await response.json();
+			response = getPropertyValue(response, "data");
 
 			isReady.value = true;
 
@@ -44,8 +48,10 @@ export default function useApi() {
 	 *
 	 * @param  {string}  endpoint
 	 *     The endpoint for a single call, to be appended to the base URL.
+	 * @param  {object}  parameters
+	 *     Any parameters to add as a query string.
 	 */
-	function getFinalUrl(endpoint) {
+	function getFinalUrl(endpoint, parameters) {
 		if (!isNonEmptyString(baseUrl)) {
 			throw new Error(`Expected non-empty string <baseUrl>, received ${getFriendlyDisplay(baseUrl)}`);
 		}
@@ -54,7 +60,10 @@ export default function useApi() {
 			throw new Error(`Expected non-empty string <endpoint>, received ${getFriendlyDisplay(endpoint)}`);
 		}
 
-		return `${baseUrl}/${endpoint}`;
+		// Serialise any provided parameters into a query string.
+		const query = new URLSearchParams(parameters).toString();
+
+		return [`${baseUrl}/${endpoint}`, query].filter(part => isNonEmptyString(part)).join("?");
 	}
 
 	/**
