@@ -1,10 +1,5 @@
-import { createTestingPinia } from "@pinia/testing";
-import { fn } from "@vitest/spy";
 import { mount } from "cypress/vue";
-import GlobalComponents from "@/plugins/global-components";
 import components from "@lewishowles/components";
-import i18n from "@/i18n";
-import router from "@/router";
 
 Cypress.Commands.add("mount", (component, options = {}) => {
 	options.global = options.global || {};
@@ -15,10 +10,6 @@ Cypress.Commands.add("mount", (component, options = {}) => {
 
 	options.global.plugins = [
 		components,
-		i18n,
-		router,
-		GlobalComponents,
-		createTestingPinia({ createSpy: fn }),
 		...options.global.plugins,
 	];
 

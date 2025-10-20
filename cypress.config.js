@@ -12,7 +12,7 @@ export default defineConfig({
 
 	e2e: {
 		specPattern: "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
-		baseUrl: "http://localhost:4173",
+		baseUrl: "http://localhost:4173/cinewatch/",
 		supportFile: "test/cypress/support/commands.js",
 	},
 
@@ -32,6 +32,7 @@ export default defineConfig({
 				resolve: {
 					...viteConfig.resolve,
 				},
+				base: "/",
 			},
 		},
 		viewportWidth: 1000,
