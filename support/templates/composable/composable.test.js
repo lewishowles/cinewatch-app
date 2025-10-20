@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import {{CAMEL_CASE_NAME}} from "./{{COMPOSABLE_NAME}}.vue";
+import {{CAMEL_CASE_NAME}} from "./{{COMPOSABLE_NAME}}.js";
 
 describe("{{COMPOSABLE_NAME}}", () => {
 	test("should initialise", () => {

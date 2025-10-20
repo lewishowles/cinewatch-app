@@ -7,13 +7,13 @@
 		Look up listings from your favourite branch of Cineworld, select the films you want to see, and let Cinewatch work out the most efficient way to watch them.
 	</p>
 
-	<div class="mt-10 flex flex-wrap items-start gap-4">
-		<form-field v-model="listingUrl" placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" class="grow">
+	<div class="mt-10 flex flex-wrap items-start gap-4" data-test="film-finder">
+		<form-field v-model="listingUrl" placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" class="grow" data-test="film-finder-field">
 			Cinema listing URL
 		</form-field>
 
-		<ui-button ref="submit-button" class="button--primary w-full shrink-0 md:mt-7 md:w-auto" v-bind="{ reactive: true }" @click="findFilms">
-			Find films
+		<ui-button ref="submit-button" class="button--primary w-full shrink-0 md:mt-7 md:w-auto" v-bind="{ reactive: true }" data-test="film-finder-button" @click="findFilms">
+			Get films
 		</ui-button>
 	</div>
 </template>

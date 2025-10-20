@@ -6,7 +6,7 @@ const mount = createMount(FilmFinder);
 
 describe("film-finder", () => {
 	describe("Initialisation", () => {
-		test("should exist as a Vue component", () => {
+		test("A Vue component should exist", () => {
 			const wrapper = mount();
 
 			expect(wrapper.vm).toBeTypeOf("object");

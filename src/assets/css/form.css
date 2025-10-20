@@ -3,7 +3,9 @@
 /*
 @utility form-input {
 	@apply block w-full rounded-md px-3 py-2 text-grey-700 shadow-xs outline-hidden;
+	@apply focus:caret-purple-800;
 	@apply dark:bg-transparent dark:text-white;
+	@apply dark:focus:caret-purple-400;
 }
 
 @utility form-select {
@@ -85,7 +87,9 @@
 @layer components {
 	.form-input {
 		@apply block w-full rounded-md px-3 py-2 text-grey-700 shadow-xs outline-hidden;
+		@apply focus:caret-purple-800;
 		@apply dark:bg-transparent dark:text-white;
+		@apply dark:focus:caret-purple-400;
 	}
 
 	.form-select {

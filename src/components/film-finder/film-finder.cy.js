@@ -9,4 +9,12 @@ describe("film-finder", () => {
 
 		cy.getByData("film-finder").shouldBeVisible();
 	});
+
+	it("The appropriate elements should be visible", () => {
+		mount();
+
+		cy.getByData("film-finder").shouldBeVisible();
+		cy.getByData("film-finder-field").shouldBeVisible();
+		cy.getByData("film-finder-button").shouldBeVisible();
+	});
 });

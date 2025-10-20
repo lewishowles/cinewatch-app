@@ -6,7 +6,7 @@ const mount = createMount({{PASCAL_CASE_NAME}});
 
 describe("{{COMPONENT_NAME}}", () => {
 	describe("Initialisation", () => {
-		test("should exist as a Vue component", () => {
+		test("A Vue component should exist", () => {
 			const wrapper = mount();
 
 			expect(wrapper.vm).toBeTypeOf("object");
