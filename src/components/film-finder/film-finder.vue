@@ -12,25 +12,30 @@
 			Cinema listing URL
 		</form-field>
 
-		<ui-button ref="submit-button" class="button--primary w-full shrink-0 md:mt-7 md:w-auto" v-bind="{ reactive: true }" data-test="film-finder-button" @click="findFilms">
+		<ui-button ref="submit-button" class="button--primary w-full shrink-0 md:mt-7 md:w-auto" v-bind="{ reactive: true }" data-test="film-finder-button" @click="getFilms">
 			Get films
 		</ui-button>
 	</div>
 </template>
 
 <script setup>
-import { nextTick, ref, useTemplateRef } from "vue";
+import { ref, useTemplateRef } from "vue";
 import { runComponentMethod } from "@lewishowles/helpers/vue";
+import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 
 const listingUrl = ref("");
-
 const submitButtonReference = useTemplateRef("submit-button");
+const { findFilms, branch, films, haveBranch, haveFilms } = useFilmFinder();
 
 /**
- * Find the available films based on the provided URL.
+ * Retrieve the available films to display from the provided URL.
  */
-async function findFilms() {
-	await nextTick();
+async function getFilms() {
+	await findFilms(listingUrl.value);
+
+	console.log({
+		branch: branch.value, films: films.value, haveBranch: haveBranch.value, haveFilms: haveFilms.value,
+	});
 
 	runComponentMethod(submitButtonReference.value, "reset");
 }
