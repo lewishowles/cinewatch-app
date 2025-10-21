@@ -1,41 +1,14 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import mockApi from "@unit/support/mock-api";
+import mockRouter from "@unit/support/mock-router";
+import { describe, expect, test, vi } from "vitest";
 import { createMount } from "@unit/support/mount";
-import { ref } from "vue";
+
 import PageHome from "./page-home.vue";
 
 const mount = createMount(PageHome);
-const mockGet = vi.fn();
-const mockPushRoute = vi.fn();
-
-vi.mock("@/composables/use-api/use-api", () => ({
-	default: () => ({
-		get: mockGet,
-		isLoading: ref(false),
-		isReady: ref(false),
-	}),
-}));
-
-vi.mock("vue-router", async (importOriginal) => {
-	const actual = await importOriginal();
-
-	return {
-		...actual,
-		useRouter: () => ({
-			push: mockPushRoute,
-		}),
-	};
-});
 
 describe("page-home", () => {
 	console.error = vi.fn();
-
-	beforeEach(() => {
-		vi.clearAllMocks();
-	});
-
-	afterEach(() => {
-		vi.restoreAllMocks();
-	});
 
 	describe("Initialisation", () => {
 		test("A Vue component should exist", () => {
@@ -57,29 +30,29 @@ describe("page-home", () => {
 
 				await vm.getFilms();
 
-				expect(mockGet).toHaveBeenCalledWith("cineworld/films", { url });
+				expect(mockApi.get).toHaveBeenCalledWith("cineworld/films", { url });
 			});
 
 			test("Navigates on successful `get`", async() => {
 				const wrapper = mount();
 				const vm = wrapper.vm;
 
-				mockGet.mockResolvedValueOnce({ branch: {}, films: [] });
+				mockApi.get.mockResolvedValueOnce({ branch: {}, films: [] });
 
 				await vm.getFilms();
 
-				expect(mockPushRoute).toHaveBeenCalledWith({ name: "branch" });
+				expect(mockRouter.push).toHaveBeenCalledWith({ name: "branch" });
 			});
 
 			test("Does not navigate on failed `get`", async() => {
 				const wrapper = mount();
 				const vm = wrapper.vm;
 
-				mockGet.mockRejectedValueOnce(null);
+				mockApi.get.mockRejectedValueOnce(null);
 
 				await vm.getFilms();
 
-				expect(mockPushRoute).not.toHaveBeenCalled();
+				expect(mockRouter.push).not.toHaveBeenCalled();
 			});
 		});
 	});
