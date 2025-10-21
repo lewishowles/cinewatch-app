@@ -1,14 +1,18 @@
 <template>
-	<h1 class="mb-4 text-4xl font-bold text-purple-800">
+	<page-header>
 		Cinewatch
-	</h1>
 
-	<p class="max-w-prose">
-		Look up listings from your favourite branch of Cineworld, select the films you want to see, and let Cinewatch work out the most efficient way to watch them.
-	</p>
+		<template #introduction>
+			Look up listings from your favourite branch of Cineworld, select the films you want to see, and let Cinewatch work out the most efficient way to watch them.
+		</template>
+	</page-header>
 
 	<div class="mt-10 flex flex-wrap items-start gap-4" data-test="film-finder">
-		<form-field v-model="listingUrl" placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" class="grow" data-test="film-finder-field">
+		<alert-message v-if="errorMessage" type="error" class="w-full" data-test="film-finder-error">
+			{{ errorMessage }}
+		</alert-message>
+
+		<form-field v-model="url" placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" class="grow" data-test="film-finder-field">
 			Cinema listing URL
 		</form-field>
 
@@ -24,26 +28,31 @@ import { ref, useTemplateRef } from "vue";
 import { runComponentMethod } from "@lewishowles/helpers/vue";
 import { useRouter } from "vue-router";
 
+import PageHeader from "@/components/layout/page-header/page-header.vue";
+
 const router = useRouter();
-const { findFilms, branch, films, haveBranch, haveFilms } = useFilmFinder();
+const { findFilms } = useFilmFinder();
 
 const submitButtonReference = useTemplateRef("submit-button");
 
-const listingUrl = ref("");
+// The user-entered URL of the branch.
+const url = ref("");
+// Any error message to display.
+const errorMessage = ref(null);
 
 /**
  * Retrieve the available films to display from the provided URL.
  */
 async function getFilms() {
 	try {
-		await findFilms(listingUrl.value);
+		errorMessage.value = null;
 
-		console.log({
-			branch: branch.value, films: films.value, haveBranch: haveBranch.value, haveFilms: haveFilms.value,
-		});
+		await findFilms(url.value);
 
 		router.push({ name: "branch" });
-	} catch {
+	} catch(error) {
+		errorMessage.value = error.message;
+
 		runComponentMethod(submitButtonReference.value, "reset");
 	}
 }

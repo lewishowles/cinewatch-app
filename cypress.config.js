@@ -11,9 +11,9 @@ export default defineConfig({
 	viewPortHeight: 900,
 
 	e2e: {
-		specPattern: "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
-		baseUrl: "http://localhost:4173/cinewatch/",
-		supportFile: "test/cypress/support/commands.js",
+		specPattern: "src/views/**/*.cy.js",
+		baseUrl: "http://localhost:5173/cinewatch/",
+		supportFile: "test/cypress/support/e2e.js",
 	},
 
 	component: {

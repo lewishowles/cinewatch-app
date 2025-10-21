@@ -26,7 +26,7 @@ describe("page-home", () => {
 
 				const url = "/some/url";
 
-				vm.listingUrl = url;
+				vm.url = url;
 
 				await vm.getFilms();
 
@@ -48,7 +48,7 @@ describe("page-home", () => {
 				const wrapper = mount();
 				const vm = wrapper.vm;
 
-				mockApi.get.mockRejectedValueOnce(null);
+				mockApi.get.mockRejectedValueOnce({ error: "Message" });
 
 				await vm.getFilms();
 
