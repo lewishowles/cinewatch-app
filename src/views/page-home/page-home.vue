@@ -19,24 +19,32 @@
 </template>
 
 <script setup>
+import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 import { ref, useTemplateRef } from "vue";
 import { runComponentMethod } from "@lewishowles/helpers/vue";
-import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const { findFilms, branch, films, haveBranch, haveFilms } = useFilmFinder();
+
+const submitButtonReference = useTemplateRef("submit-button");
 
 const listingUrl = ref("");
-const submitButtonReference = useTemplateRef("submit-button");
-const { findFilms, branch, films, haveBranch, haveFilms } = useFilmFinder();
 
 /**
  * Retrieve the available films to display from the provided URL.
  */
 async function getFilms() {
-	await findFilms(listingUrl.value);
+	try {
+		await findFilms(listingUrl.value);
 
-	console.log({
-		branch: branch.value, films: films.value, haveBranch: haveBranch.value, haveFilms: haveFilms.value,
-	});
+		console.log({
+			branch: branch.value, films: films.value, haveBranch: haveBranch.value, haveFilms: haveFilms.value,
+		});
 
-	runComponentMethod(submitButtonReference.value, "reset");
+		router.push({ name: "branch" });
+	} catch {
+		runComponentMethod(submitButtonReference.value, "reset");
+	}
 }
 </script>

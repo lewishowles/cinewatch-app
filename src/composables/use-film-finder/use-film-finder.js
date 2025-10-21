@@ -41,6 +41,8 @@ export default function useFilmFinder() {
 			data.value = response;
 		} catch(error) {
 			console.error("use-film-finder[findFilms]: Unable to load films.", error);
+
+			throw error;
 		}
 	}
 

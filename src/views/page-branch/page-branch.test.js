@@ -1,10 +1,10 @@
 import { createMount } from "@unit/support/mount";
 import { describe, expect, test } from "vitest";
-import FilmFinder from "./film-finder.vue";
+import PageBranch from "./page-branch.vue";
 
-const mount = createMount(FilmFinder);
+const mount = createMount(PageBranch);
 
-describe("film-finder", () => {
+describe("page-branch", () => {
 	describe("Initialisation", () => {
 		test("A Vue component should exist", () => {
 			const wrapper = mount();

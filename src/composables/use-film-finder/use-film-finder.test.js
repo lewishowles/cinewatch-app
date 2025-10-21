@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { flushPromises } from "@vue/test-utils";
 import { ref } from "vue";
 
-// Create a mutable mock for the `get` method so tests can update its behaviour.
 const mockGet = vi.fn();
 
 vi.mock("@/composables/use-api/use-api", () => ({
@@ -73,7 +72,7 @@ describe("use-film-finder", () => {
 
 			const { findFilms, films, haveFilms, branch, haveBranch } = useFilmFinder();
 
-			await findFilms("/bad/url");
+			await expect(findFilms("/bad/url")).rejects.toThrow();
 			await flushPromises();
 
 			expect(branch.value).toEqual(null);
