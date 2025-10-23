@@ -1,5 +1,5 @@
 <template>
-	<page-header>
+	<page-header class="mb-10">
 		Cinewatch
 
 		<template #introduction>
@@ -7,7 +7,7 @@
 		</template>
 	</page-header>
 
-	<div class="mt-10" data-test="film-finder">
+	<div data-test="film-finder">
 		<alert-message v-if="errorMessage" class="mb-4" type="error" data-test="film-finder-error">
 			{{ errorMessage }}
 		</alert-message>

@@ -1,7 +1,6 @@
-import mockApi from "@unit/support/mock-api";
-import mockRouter from "@unit/support/mock-router";
-import { createMount } from "@unit/support/mount";
 import { describe, expect, test } from "vitest";
+import { createMount } from "@unit/support/mount";
+
 import FilmList from "./film-list.vue";
 
 const mount = createMount(FilmList);

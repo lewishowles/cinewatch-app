@@ -1,9 +1,13 @@
-import useApi from "@/composables/use-api/use-api";
+import { arrayLength, isNonEmptyArray } from "@lewishowles/helpers/array";
 import { computed, ref } from "vue";
 import { get as getPropertyValue, isNonEmptyObject } from "@lewishowles/helpers/object";
 import { getFriendlyDisplay } from "@lewishowles/helpers/general";
-import { isNonEmptyArray } from "@lewishowles/helpers/array";
+import useApi from "@/composables/use-api/use-api";
 
+// Our API helpers. These are external to our function so that they can be
+// called from within Cypress tests, which doesn't seem to have a good way to
+// mock or stub composables.
+const { get, isLoading, isReady } = useApi();
 // The raw data provided by the API.
 const data = ref(null);
 
@@ -11,8 +15,6 @@ const data = ref(null);
  * Load details of the available films from a provided URL.
  */
 export default function useFilmFinder() {
-	const { get, isLoading, isReady } = useApi();
-
 	// The details of the branch itself.
 	const branch = computed(() => getPropertyValue(data.value, "branch"));
 	// Whether we have branch details available.
@@ -21,6 +23,24 @@ export default function useFilmFinder() {
 	const films = computed(() => getPropertyValue(data.value, "films"));
 	// Whether we have film details available.
 	const haveFilms = computed(() => !isLoading.value && isNonEmptyArray(films.value));
+
+	// The total number of films available to book.
+	const totalFilmCount = computed(() => {
+		if (!haveFilms.value) {
+			return 0;
+		}
+
+		return arrayLength(films.value);
+	});
+
+	// The number of films that are screening today.
+	const availableFilmCount = computed(() => {
+		if (!haveFilms.value) {
+			return 0;
+		}
+
+		return arrayLength(films.value.filter(film => isNonEmptyArray(getPropertyValue(film, "screenings"))));
+	});
 
 	/**
 	 * Load the details of any films available to book at the given URL.
@@ -48,12 +68,15 @@ export default function useFilmFinder() {
 	}
 
 	return {
+		data,
+		isLoading,
+		isReady,
+		findFilms,
 		branch,
 		haveBranch,
 		films,
 		haveFilms,
-		findFilms,
-		isLoading,
-		isReady,
+		totalFilmCount,
+		availableFilmCount,
 	};
 }
