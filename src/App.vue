@@ -4,6 +4,10 @@
 	</header>
 
 	<main class="mx-auto max-w-3xl">
-		<router-view />
+		<film-finder />
 	</main>
 </template>
+
+<script setup>
+import FilmFinder from "@/components/film-finder/film-finder.vue";
+</script>

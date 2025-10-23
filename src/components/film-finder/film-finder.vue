@@ -16,7 +16,14 @@
 			Cinema listing URL
 		</form-field>
 
-		<ui-button ref="submit-button" class="button--primary w-full shrink-0 md:mt-7 md:w-auto" v-bind="{ reactive: true }" data-test="film-finder-button" @click="getFilms">
+		<ui-button
+			ref="submit-button"
+			type="submit"
+			class="button--primary w-full shrink-0 md:mt-7 md:w-auto"
+			v-bind="{ reactive: true }"
+			data-test="film-finder-button"
+			@click="getFilms"
+		>
 			Get films
 		</ui-button>
 	</div>
@@ -26,11 +33,9 @@
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 import { ref, useTemplateRef } from "vue";
 import { runComponentMethod } from "@lewishowles/helpers/vue";
-import { useRouter } from "vue-router";
 
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 
-const router = useRouter();
 const { findFilms } = useFilmFinder();
 
 const submitButtonReference = useTemplateRef("submit-button");
@@ -49,7 +54,7 @@ async function getFilms() {
 
 		await findFilms(url.value);
 
-		router.push({ name: "branch" });
+		//
 	} catch(error) {
 		errorMessage.value = error.message;
 

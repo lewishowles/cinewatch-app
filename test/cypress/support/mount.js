@@ -1,5 +1,4 @@
 import components from "@lewishowles/components";
-import router from "@/router";
 import { mount } from "cypress/vue";
 
 Cypress.Commands.add("mount", (component, options = {}) => {
@@ -11,7 +10,6 @@ Cypress.Commands.add("mount", (component, options = {}) => {
 
 	options.global.plugins = [
 		components,
-		router,
 		...options.global.plugins,
 	];
 

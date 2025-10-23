@@ -1,12 +1,17 @@
-describe("page-home", () => {
-	it("A view is rendered", () => {
-		cy.visit("/");
+import FilmFinder from "./film-finder.vue";
+import { createMount } from "@cypress/support/mount";
+
+const mount = createMount(FilmFinder);
+
+describe("film-finder", () => {
+	it("A component is rendered", () => {
+		mount();
 
 		cy.getByData("film-finder").shouldBeVisible();
 	});
 
 	it("The appropriate elements should be visible", () => {
-		cy.visit("/");
+		mount();
 
 		cy.getByData("film-finder").shouldBeVisible();
 		cy.getByData("film-finder-field").shouldBeVisible();
@@ -15,7 +20,7 @@ describe("page-home", () => {
 
 	describe("Loading films", () => {
 		it("The user should be redirected if films load successfully", () => {
-			cy.visit("/");
+			mount();
 
 			cy.intercept("GET", "/api/cineworld/films?*", { branch: {}, films: [] }).as("loadFilms");
 
@@ -23,11 +28,11 @@ describe("page-home", () => {
 
 			cy.wait("@loadFilms");
 
-			cy.url().should("include", "/branch");
+			// cy.url().should("include", "/branch");
 		});
 
-		it.only("An error should be shown if films do not load successfully", () => {
-			cy.visit("/");
+		it("An error should be shown if films do not load successfully", () => {
+			mount();
 
 			cy.intercept("GET", "/api/cineworld/films?*", {
 				statusCode: 400,
@@ -40,7 +45,6 @@ describe("page-home", () => {
 
 			cy.wait("@loadFilms").its("response.statusCode").should("eq", 400);
 
-			cy.url().should("not.include", "/branch");
 			cy.getByData("film-finder-error").shouldBeVisible();
 		});
 	});
