@@ -6,20 +6,21 @@ import { isNonEmptyArray } from "@lewishowles/helpers/array";
 
 // The raw data provided by the API.
 const data = ref(null);
-// The details of the branch itself.
-const branch = computed(() => getPropertyValue(data.value, "branch"));
-// Whether we have branch details available.
-const haveBranch = computed(() => isNonEmptyObject(branch.value));
-// The details of the available films.
-const films = computed(() => getPropertyValue(data.value, "films"));
-// Whether we have film details available.
-const haveFilms = computed(() => isNonEmptyArray(films.value));
 
 /**
  * Load details of the available films from a provided URL.
  */
 export default function useFilmFinder() {
 	const { get, isLoading, isReady } = useApi();
+
+	// The details of the branch itself.
+	const branch = computed(() => getPropertyValue(data.value, "branch"));
+	// Whether we have branch details available.
+	const haveBranch = computed(() => !isLoading.value && isNonEmptyObject(branch.value));
+	// The details of the available films.
+	const films = computed(() => getPropertyValue(data.value, "films"));
+	// Whether we have film details available.
+	const haveFilms = computed(() => !isLoading.value && isNonEmptyArray(films.value));
 
 	/**
 	 * Load the details of any films available to book at the given URL.
