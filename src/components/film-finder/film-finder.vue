@@ -39,13 +39,13 @@ import { runComponentMethod } from "@lewishowles/helpers/vue";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 
 // Our film finder, which searches for films for us.
-const { findFilms } = useFilmFinder();
+const { isLoading, findFilms } = useFilmFinder();
 // Our stage manager, which determines which stage of the process is shown to
 // the user.
 const { goToResults } = useStageManager();
 
+// Our submit button, allowing us to reset its state.
 const submitButtonReference = useTemplateRef("submit-button");
-
 // The user-entered URL of the branch.
 const url = ref("");
 // Any error message to display.
@@ -55,6 +55,10 @@ const errorMessage = ref(null);
  * Retrieve the available films to display from the provided URL.
  */
 async function getFilms() {
+	if (isLoading.value) {
+		return;
+	}
+
 	try {
 		errorMessage.value = null;
 
