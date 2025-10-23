@@ -1,5 +1,8 @@
 import { computed, ref } from "vue";
 
+// The current, internal, stage.
+const stage = ref("search");
+
 /**
  * Manage the current stage of the user journey. Since the process of finding,
  * selecting, and displaying the results for our films isn't really conducive to
@@ -10,8 +13,6 @@ import { computed, ref } from "vue";
  * be reasonably sure still exists.
  */
 export default function useStageManager() {
-	// The current, internal, stage.
-	const stage = ref("search");
 	// Whether we're currently on the search stage.
 	const isSearch = computed(() => stage.value === "search");
 	// Whether we're currently on the results stage.
