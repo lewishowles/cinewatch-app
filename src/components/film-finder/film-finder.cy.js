@@ -14,6 +14,7 @@ describe("film-finder", () => {
 		mount();
 
 		cy.getByData("film-finder").shouldBeVisible();
+		cy.getByData("film-finder-form").shouldBeVisible();
 		cy.getByData("film-finder-field").shouldBeVisible();
 		cy.getByData("film-finder-button").shouldBeVisible();
 	});

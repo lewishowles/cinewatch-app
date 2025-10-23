@@ -1,8 +1,16 @@
 import mockApi from "@unit/support/mock-api";
-import { describe, expect, test, vi } from "vitest";
 import { createMount } from "@unit/support/mount";
+import { describe, expect, test, vi } from "vitest";
 
 import FilmFinder from "./film-finder.vue";
+
+const mockGoToResults = vi.fn();
+
+vi.mock("@/composables/use-stage-manager/use-stage-manager", () => ({
+	default: () => ({
+		goToResults: mockGoToResults,
+	}),
+}));
 
 const mount = createMount(FilmFinder);
 
@@ -40,7 +48,7 @@ describe("film-finder", () => {
 
 				await vm.getFilms();
 
-				// expect(mockRouter.push).toHaveBeenCalledWith({ name: "branch" });
+				expect(mockGoToResults).toHaveBeenCalled();
 			});
 
 			test("Does not navigate on failed `get`", async() => {
@@ -51,7 +59,7 @@ describe("film-finder", () => {
 
 				await vm.getFilms();
 
-				// expect(mockRouter.push).not.toHaveBeenCalled();
+				expect(mockGoToResults).not.toHaveBeenCalled();
 			});
 		});
 	});

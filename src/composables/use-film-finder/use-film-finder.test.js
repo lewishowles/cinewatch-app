@@ -2,6 +2,8 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { flushPromises } from "@vue/test-utils";
 import { ref } from "vue";
 
+import useFilmFinder from "./use-film-finder.js";
+
 const mockGet = vi.fn();
 
 vi.mock("@/composables/use-api/use-api", () => ({
@@ -11,8 +13,6 @@ vi.mock("@/composables/use-api/use-api", () => ({
 		isReady: ref(false),
 	}),
 }));
-
-import useFilmFinder from "./use-film-finder.js";
 
 describe("use-film-finder", () => {
 	console.error = vi.fn();

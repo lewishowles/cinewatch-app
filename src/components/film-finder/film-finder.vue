@@ -7,36 +7,42 @@
 		</template>
 	</page-header>
 
-	<div class="mt-10 flex flex-wrap items-start gap-4" data-test="film-finder">
-		<alert-message v-if="errorMessage" type="error" class="w-full" data-test="film-finder-error">
+	<div class="mt-10" data-test="film-finder">
+		<alert-message v-if="errorMessage" class="mb-4" type="error" data-test="film-finder-error">
 			{{ errorMessage }}
 		</alert-message>
 
-		<form-field v-model="url" placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" class="grow" data-test="film-finder-field">
-			Cinema listing URL
-		</form-field>
+		<form class="flex flex-wrap items-start gap-4" data-test="film-finder-form" @submit.prevent="getFilms">
+			<form-field v-model="url" placeholder="e.g. https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068" class="grow" data-test="film-finder-field">
+				Cinema listing URL
+			</form-field>
 
-		<ui-button
-			ref="submit-button"
-			type="submit"
-			class="button--primary w-full shrink-0 md:mt-7 md:w-auto"
-			v-bind="{ reactive: true }"
-			data-test="film-finder-button"
-			@click="getFilms"
-		>
-			Get films
-		</ui-button>
+			<ui-button
+				ref="submit-button"
+				type="submit"
+				class="button--primary w-full shrink-0 md:mt-7 md:w-auto"
+				v-bind="{ reactive: true }"
+				data-test="film-finder-button"
+			>
+				Get films
+			</ui-button>
+		</form>
 	</div>
 </template>
 
 <script setup>
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
+import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
 import { ref, useTemplateRef } from "vue";
 import { runComponentMethod } from "@lewishowles/helpers/vue";
 
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 
+// Our film finder, which searches for films for us.
 const { findFilms } = useFilmFinder();
+// Our stage manager, which determines which stage of the process is shown to
+// the user.
+const { goToResults } = useStageManager();
 
 const submitButtonReference = useTemplateRef("submit-button");
 
@@ -54,7 +60,7 @@ async function getFilms() {
 
 		await findFilms(url.value);
 
-		//
+		goToResults();
 	} catch(error) {
 		errorMessage.value = error.message;
 
