@@ -34,7 +34,7 @@ export default function useFilmFinder() {
 	});
 
 	// The films that are currently showing.
-	const showingFilms = computed(() => {
+	const availableFilms = computed(() => {
 		if (!haveFilms.value) {
 			return [];
 		}
@@ -43,9 +43,9 @@ export default function useFilmFinder() {
 	});
 
 	// The number of films that are currently showing.
-	const showingFilmsCount = computed(() => arrayLength(showingFilms.value));
+	const availableFilmsCount = computed(() => arrayLength(availableFilms.value));
 	// Whether there are any showing films.
-	const haveShowingFilms = computed(() => showingFilmsCount.value > 0);
+	const haveAvailableFilms = computed(() => availableFilmsCount.value > 0);
 
 	// The films that are available to book, but have not yet released, i.e.
 	// they have no screenings.
@@ -98,9 +98,9 @@ export default function useFilmFinder() {
 		films,
 		haveFilms,
 		totalFilmsCount,
-		showingFilms,
-		showingFilmsCount,
-		haveShowingFilms,
+		availableFilms,
+		availableFilmsCount,
+		haveAvailableFilms,
 		upcomingFilms,
 		upcomingFilmsCount,
 		haveUpcomingFilms,

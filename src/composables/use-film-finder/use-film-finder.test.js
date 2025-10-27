@@ -70,7 +70,7 @@ describe("use-film-finder", () => {
 			});
 		});
 
-		describe("showingFilms", () => {
+		describe("availableFilms", () => {
 			test("Discards films with no screenings", () => {
 				const sampleFilms = [
 					{ id: 1, screenings: [{}] },
@@ -78,15 +78,15 @@ describe("use-film-finder", () => {
 					{ id: 3 },
 				];
 
-				const { data, showingFilms } = useFilmFinder();
+				const { data, availableFilms } = useFilmFinder();
 
 				data.value = { films: sampleFilms };
 
-				expect(showingFilms.value).toEqual([{ id: 1, screenings: [{}] }]);
+				expect(availableFilms.value).toEqual([{ id: 1, screenings: [{}] }]);
 			});
 		});
 
-		describe("showingFilmsCount", () => {
+		describe("availableFilmsCount", () => {
 			test("Counts films that have screenings", () => {
 				const sampleFilms = [
 					{ id: 1, screenings: [{}] },
@@ -94,11 +94,11 @@ describe("use-film-finder", () => {
 					{ id: 3 },
 				];
 
-				const { data, showingFilmsCount } = useFilmFinder();
+				const { data, availableFilmsCount } = useFilmFinder();
 
 				data.value = { films: sampleFilms };
 
-				expect(showingFilmsCount.value).toBe(1);
+				expect(availableFilmsCount.value).toBe(1);
 			});
 
 			test("Allows for films that have no screenings", () => {
@@ -107,15 +107,15 @@ describe("use-film-finder", () => {
 					{ id: 3 },
 				];
 
-				const { data, showingFilmsCount } = useFilmFinder();
+				const { data, availableFilmsCount } = useFilmFinder();
 
 				data.value = { films: sampleFilms };
 
-				expect(showingFilmsCount.value).toBe(0);
+				expect(availableFilmsCount.value).toBe(0);
 			});
 		});
 
-		describe("haveShowingFilms", () => {
+		describe("haveAvailableFilms", () => {
 			test("Counts films that have screenings", () => {
 				const sampleFilms = [
 					{ id: 1, screenings: [{}] },
@@ -123,11 +123,11 @@ describe("use-film-finder", () => {
 					{ id: 3 },
 				];
 
-				const { data, haveShowingFilms } = useFilmFinder();
+				const { data, haveAvailableFilms } = useFilmFinder();
 
 				data.value = { films: sampleFilms };
 
-				expect(haveShowingFilms.value).toBe(true);
+				expect(haveAvailableFilms.value).toBe(true);
 			});
 
 			test("Allows for films that have no screenings", () => {
@@ -136,11 +136,11 @@ describe("use-film-finder", () => {
 					{ id: 3 },
 				];
 
-				const { data, haveShowingFilms } = useFilmFinder();
+				const { data, haveAvailableFilms } = useFilmFinder();
 
 				data.value = { films: sampleFilms };
 
-				expect(haveShowingFilms.value).toBe(false);
+				expect(haveAvailableFilms.value).toBe(false);
 			});
 		});
 

@@ -39,8 +39,7 @@
 				</p>
 
 				<div class="flex flex-col gap-16">
-					<showing-film v-for="film in showingFilms" :key="film.id" v-bind="{ film }" />
-					<upcoming-film v-for="film in upcomingFilms" :key="film.id" v-bind="{ film }" />
+					<available-film v-for="film in availableFilms" :key="film.id" v-bind="{ film }" />
 				</div>
 			</div>
 		</template>
@@ -51,12 +50,11 @@
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
 
-import ShowingFilm from "@/components/showing-film/showing-film.vue";
-import UpcomingFilm from "@/components/upcoming-film/upcoming-film.vue";
+import AvailableFilm from "@/components/available-film/available-film.vue";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 
 // The branch and film details retrieved by our film finder.
-const { isLoading, branch, haveBranch, haveFilms, totalFilmsCount, showingFilms, showingFilmsCount, upcomingFilms } = useFilmFinder();
+const { isLoading, branch, haveBranch, haveFilms, totalFilmsCount, availableFilms, showingFilmsCount } = useFilmFinder();
 // Allow the user to go back and pick another branch.
 const { goToSearch } = useStageManager();
 </script>

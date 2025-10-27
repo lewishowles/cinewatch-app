@@ -1,10 +1,10 @@
 import { createMount } from "@unit/support/mount";
 import { describe, expect, test } from "vitest";
-import ShowingFilm from "./showing-film.vue";
+import AvailableFilm from "./available-film.vue";
 
-const mount = createMount(ShowingFilm);
+const mount = createMount(AvailableFilm);
 
-describe("showing-film", () => {
+describe("available-film", () => {
 	describe("Initialisation", () => {
 		test("A Vue component should exist", () => {
 			const wrapper = mount();

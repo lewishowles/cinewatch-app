@@ -1,9 +1,9 @@
-import ShowingFilm from "./showing-film.vue";
+import AvailableFilm from "./available-film.vue";
 import { createMount } from "@cypress/support/mount";
 
-const mount = createMount(ShowingFilm);
+const mount = createMount(AvailableFilm);
 
-describe("showing-film", () => {
+describe("available-film", () => {
 	it("A component is rendered", () => {
 		mount({
 			film: {
@@ -11,7 +11,7 @@ describe("showing-film", () => {
 			},
 		});
 
-		cy.getByData("showing-film").shouldBeVisible();
+		cy.getByData("available-film").shouldBeVisible();
 	});
 
 	describe("Render", () => {
@@ -23,7 +23,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-title").shouldBeVisible();
+				cy.getByData("available-film-title").shouldBeVisible();
 			});
 
 			it("A title is not shown when not present", () => {
@@ -33,7 +33,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-title").should("not.exist");
+				cy.getByData("available-film-title").should("not.exist");
 			});
 		});
 
@@ -48,7 +48,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-rating").shouldBeVisible();
+				cy.getByData("available-film-rating").shouldBeVisible();
 			});
 
 			it("A rating is not shown when not present", () => {
@@ -58,7 +58,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-rating").should("not.exist");
+				cy.getByData("available-film-rating").should("not.exist");
 			});
 		});
 
@@ -70,7 +70,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-genre").shouldBeVisible();
+				cy.getByData("available-film-genre").shouldBeVisible();
 			});
 
 			it("A genre is not shown when not present", () => {
@@ -80,7 +80,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-genre").should("not.exist");
+				cy.getByData("available-film-genre").should("not.exist");
 			});
 		});
 
@@ -92,7 +92,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-duration").shouldBeVisible();
+				cy.getByData("available-film-duration").shouldBeVisible();
 			});
 
 			it("A duration is not shown when not present", () => {
@@ -102,7 +102,7 @@ describe("showing-film", () => {
 					},
 				});
 
-				cy.getByData("showing-film-duration").should("not.exist");
+				cy.getByData("available-film-duration").should("not.exist");
 			});
 		});
 	});
