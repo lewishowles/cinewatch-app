@@ -24,7 +24,7 @@ describe("film-list", () => {
 		mount();
 
 		cy.getByData("film-list-loading").shouldBeVisible();
-		cy.getByData("film-list-warning").should("not.exist");
+		cy.getByData("film-list-not-found").should("not.exist");
 		cy.getByData("film-list-list").should("not.exist");
 	});
 
@@ -32,19 +32,39 @@ describe("film-list", () => {
 		mount();
 
 		cy.getByData("film-list-loading").should("not.exist");
-		cy.getByData("film-list-warning").shouldBeVisible();
+		cy.getByData("film-list-not-found").shouldBeVisible();
 		cy.getByData("film-list-list").should("not.exist");
 	});
 
 	it("Displays a film list if films are found", () => {
 		data.value = {
-			films: [{ title: "Tron: Ares" }],
+			films: [{ title: "Tron: Ares", id: 1, screenings: [{}] }],
 		};
 
 		mount();
 
 		cy.getByData("film-list-loading").should("not.exist");
-		cy.getByData("film-list-warning").should("not.exist");
+		cy.getByData("film-list-not-found").should("not.exist");
 		cy.getByData("film-list-list").shouldBeVisible();
+	});
+
+	it("Shows the correct number of films", () => {
+		data.value = {
+			films: [
+				{ title: "Tron: Ares", id: 1, screenings: [{}] },
+				{ title: "One Battle After Another", id: 2, screenings: [{}] },
+				{ title: "Good Fortune", id: 3, screenings: [{}] },
+				{ title: "Upcoming Pixar Film", id: 4 },
+				{ title: "Upcoming Marvel Film", id: 5 },
+			],
+		};
+
+		mount();
+
+		cy.getByData("film-list-loading").should("not.exist");
+		cy.getByData("film-list-not-found").should("not.exist");
+		cy.getByData("film-list-list").shouldBeVisible();
+		cy.getByData("showing-film").shouldHaveCount(3);
+		cy.getByData("upcoming-film").shouldHaveCount(2);
 	});
 });

@@ -25,7 +25,7 @@ export default function useFilmFinder() {
 	const haveFilms = computed(() => !isLoading.value && isNonEmptyArray(films.value));
 
 	// The total number of films available to book.
-	const totalFilmCount = computed(() => {
+	const totalFilmsCount = computed(() => {
 		if (!haveFilms.value) {
 			return 0;
 		}
@@ -33,14 +33,34 @@ export default function useFilmFinder() {
 		return arrayLength(films.value);
 	});
 
-	// The number of films that are screening today.
-	const availableFilmCount = computed(() => {
+	// The films that are currently showing.
+	const showingFilms = computed(() => {
 		if (!haveFilms.value) {
-			return 0;
+			return [];
 		}
 
-		return arrayLength(films.value.filter(film => isNonEmptyArray(getPropertyValue(film, "screenings"))));
+		return films.value.filter(film => isNonEmptyArray(getPropertyValue(film, "screenings")));
 	});
+
+	// The number of films that are currently showing.
+	const showingFilmsCount = computed(() => arrayLength(showingFilms.value));
+	// Whether there are any showing films.
+	const haveShowingFilms = computed(() => showingFilmsCount.value > 0);
+
+	// The films that are available to book, but have not yet released, i.e.
+	// they have no screenings.
+	const upcomingFilms = computed(() => {
+		if (!haveFilms.value) {
+			return [];
+		}
+
+		return films.value.filter(film => !isNonEmptyArray(getPropertyValue(film, "screenings")));
+	});
+
+	// The number of films that are currently showing.
+	const upcomingFilmsCount = computed(() => arrayLength(upcomingFilms.value));
+	// Whether there are any upcoming films.
+	const haveUpcomingFilms = computed(() => upcomingFilmsCount.value > 0);
 
 	/**
 	 * Load the details of any films available to book at the given URL.
@@ -64,6 +84,7 @@ export default function useFilmFinder() {
 			console.error("use-film-finder[findFilms]: Unable to load films.", error);
 
 			throw error;
+			//throw new Error("Films couldn’t be loaded due to an error with the system. Please try again shortly.");
 		}
 	}
 
@@ -76,7 +97,12 @@ export default function useFilmFinder() {
 		haveBranch,
 		films,
 		haveFilms,
-		totalFilmCount,
-		availableFilmCount,
+		totalFilmsCount,
+		showingFilms,
+		showingFilmsCount,
+		haveShowingFilms,
+		upcomingFilms,
+		upcomingFilmsCount,
+		haveUpcomingFilms,
 	};
 }

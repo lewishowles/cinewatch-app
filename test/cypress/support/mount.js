@@ -1,4 +1,5 @@
 import components from "@lewishowles/components";
+import { isNonEmptyObject } from "@lewishowles/helpers/object";
 import { mount } from "cypress/vue";
 
 Cypress.Commands.add("mount", (component, options = {}) => {
@@ -39,18 +40,28 @@ export function createMount(component, defaultOptions = {}) {
 	 *     The options to pass to Cypress for this individual mount.
 	 */
 	return function (options = {}) {
+		const mergedProps = {
+			...defaultOptions.props,
+			...options.props,
+		};
+
+		const mergedSlots = {
+			...defaultOptions.slots,
+			...options.slots,
+		};
+
 		const mergedOptions = {
 			...defaultOptions,
 			...options,
-			props: {
-				...defaultOptions.props,
-				...options.props,
-			},
-			slots: {
-				...defaultOptions.slots,
-				...options.slots,
-			},
 		};
+
+		if (isNonEmptyObject(mergedProps)) {
+			mergedOptions.props = mergedProps;
+		}
+
+		if (isNonEmptyObject(mergedSlots)) {
+			mergedOptions.slots = mergedSlots;
+		}
 
 		const isDirectProps = !Object.hasOwn(mergedOptions, "props") && !Object.hasOwn(mergedOptions, "slots");
 		const providedOptions = isDirectProps ? { props: mergedOptions } : mergedOptions;

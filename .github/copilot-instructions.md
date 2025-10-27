@@ -23,6 +23,7 @@ These instructions are targeted guidance for AI coding agents working on the Cin
 	- When adding tests: follow existing patterns — use `test/unit/setup.js` for global setup, use `vi` to mock functions, and place unit tests alongside their modules.
 	- When writing tests for component or composable methods, wrap tests for a method in a `describe` block named for the method, and wrap all method tests in a `describe` block named `Methods`.
 	- When writing the names for tests, use plain english and full sentences. e.g. "Switches to the details page", not "switches to details page".
+	- Always start test names with a capital, unless the name starts with a variable.
 
 4. Importing, mocking and network calls
 	- The project frequently mocks fetch globally in `test/unit/setup.js`. When writing unit tests, prefer mocking fetch with Vitest's `vi.fn()` or mocking composables (see `test/unit/support/mock-api.js` which vi.mock()s `@/composables/use-api/use-api`).
