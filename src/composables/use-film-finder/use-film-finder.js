@@ -83,8 +83,7 @@ export default function useFilmFinder() {
 		} catch(error) {
 			console.error("use-film-finder[findFilms]: Unable to load films.", error);
 
-			throw error;
-			//throw new Error("Films couldn’t be loaded due to an error with the system. Please try again shortly.");
+			throw new Error("Films couldn’t be loaded due to an error with the system. Please try again shortly.");
 		}
 	}
 
