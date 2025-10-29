@@ -44,4 +44,11 @@ const selectedScreenings = defineModel({
 
 // Whether any screenings have been provided.
 const haveScreenings = computed(() => isNonEmptyArray(props.screenings));
+
+// Initialise our selected screenings.
+if (haveScreenings.value) {
+	props.screenings.forEach(screening => {
+		selectedScreenings.value[screening.id] = false;
+	});
+}
 </script>

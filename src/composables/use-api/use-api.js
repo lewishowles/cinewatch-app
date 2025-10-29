@@ -4,7 +4,10 @@ import { isNonEmptyString } from "@lewishowles/helpers/string";
 import { ref } from "vue";
 
 /**
- * Simplify the process of making API calls by removing some of the boilerplate.
+ * The `use-api` composable is intended to simplify the process of making API
+ * calls by removing some of the necessary boilerplate, setting up status
+ * indicators, and providing an easy hook for testing, allowing API responses to
+ * be mocked simply.
  */
 export default function useApi() {
 	// Our base URL, which is prepended to API calls. We do this so that the

@@ -3,7 +3,7 @@
 		<img src="/logo.svg" alt="Cinewatch" class="h-5" />
 	</header>
 
-	<main class="mx-auto max-w-3xl">
+	<main class="mx-auto max-w-3xl px-4">
 		<film-finder v-if="isSearch" />
 		<film-list v-else-if="isResults" />
 	</main>
