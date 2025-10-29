@@ -16,9 +16,9 @@ export default function useStageManager() {
 	// Whether we're currently on the search stage.
 	const isSearch = computed(() => stage.value === "search");
 	// Whether we're currently on the results stage.
-	const isResults = computed(() => stage.value === "results");
+	const isList = computed(() => stage.value === "results");
 	// Whether we're currently on the details stage.
-	const isDetails = computed(() => stage.value === "details");
+	const isSets = computed(() => stage.value === "sets");
 
 	/**
 	 * Set the current stage to results.
@@ -30,15 +30,15 @@ export default function useStageManager() {
 	/**
 	 * Set the current stage to results.
 	 */
-	function goToResults() {
+	function goToList() {
 		stage.value = "results";
 	}
 
 	/**
 	 * Set the current stage to details.
 	 */
-	function goToDetails() {
-		stage.value = "details";
+	function goToSets() {
+		stage.value = "sets";
 	}
 
 	/**
@@ -50,11 +50,11 @@ export default function useStageManager() {
 
 	return {
 		isSearch,
-		isResults,
-		isDetails,
+		isList,
+		isSets,
 		goToSearch,
-		goToResults,
-		goToDetails,
+		goToList,
+		goToSets,
 		reset,
 	};
 }

@@ -57,7 +57,7 @@ import PageHeader from "@/components/layout/page-header/page-header.vue";
 const { branch, findFilms, haveBranch, isLoading } = useFilmFinder();
 // Our stage manager, which determines which stage of the process is shown to
 // the user.
-const { goToResults } = useStageManager();
+const { goToList } = useStageManager();
 
 // Our submit button, allowing us to reset its state.
 const submitButtonReference = useTemplateRef("submit-button");
@@ -86,7 +86,7 @@ async function getFilms() {
 
 		storeFavouriteBranch();
 
-		goToResults();
+		goToList();
 	} catch(error) {
 		errorMessage.value = error.message;
 

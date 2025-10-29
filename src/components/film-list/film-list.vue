@@ -43,16 +43,16 @@
 				</p>
 
 				<div class="flex flex-col gap-16">
-					<available-film v-for="film in availableFilms" :key="film.id" v-model="selectedFilmScreenings[film.id]" v-bind="{ film }" />
+					<available-film v-for="film in availableFilms" :key="film.id" v-model="filmScreeningTypes[film.id]" v-bind="{ film }" />
 				</div>
 			</div>
 
 			<div class="fixed inset-x-0 bottom-0 mb-4 bg-white/60">
 				<div class="mx-auto max-w-3xl px-4 py-2 rounded-full bg-white/30 backdrop-blur-lg outline outline-grey-300 border border-white flex items-center justify-between text-grey-500">
 					<span class="text-shadow-2xs text-shadow-white">
-						{{ selectedFilmCount }} selected
+						{{ selectedFilmsCount }} selected
 
-						<template v-if="selectedFilmCount === 1">
+						<template v-if="selectedFilmsCount === 1">
 							film
 						</template>
 						<template v-else>
@@ -60,7 +60,7 @@
 						</template>
 					</span>
 
-					<ui-button class="button--primary rounded-full animate-opacity -me-2" :class="{ 'opacity-0': selectedFilmCount < 2, 'opacity-1': selectedFilmCount > 1 }">
+					<ui-button class="button--primary rounded-full animate-opacity -me-2" :class="{ 'opacity-0': selectedFilmsCount < 2, 'opacity-1': selectedFilmsCount > 1 }" @click="selectFilms">
 						Get best times
 					</ui-button>
 				</div>
@@ -71,39 +71,31 @@
 
 <script setup>
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
+import useFilmSetCalculator from "@/composables/use-film-set-calculator/use-film-set-calculator";
 import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
-import { isNonEmptyObject } from "@lewishowles/helpers/object";
 
 import AvailableFilm from "@/components/available-film/available-film.vue";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 
-import { computed, ref } from "vue";
 // The branch and film details retrieved by our film finder.
 const { isLoading, branch, haveBranch, haveFilms, totalFilmsCount, availableFilms, availableFilmsCount } = useFilmFinder();
 // Allow the user to go back and pick another branch.
-const { goToSearch } = useStageManager();
-// The selected screening types, grouped by film ID.
-const selectedFilmScreenings = ref({});
-
-// The number of films selected by the user to watch.
-const selectedFilmCount = computed(() => {
-	if (!isNonEmptyObject(selectedFilmScreenings.value)) {
-		return 0;
-	}
-
-	return Object.values(selectedFilmScreenings.value).reduce((count, film) => {
-		if (Object.values(film).some(Boolean)) {
-			count++;
-		}
-
-		return count;
-	}, 0);
-});
+const { goToSearch, goToSets } = useStageManager();
+// Set up the process of calculating the best film sets.
+const { filmScreeningTypes, selectedFilmsCount } = useFilmSetCalculator();
 
 // Initialise our selected screenings.
 if (haveFilms.value) {
 	availableFilms.value.forEach(film => {
-		selectedFilmScreenings.value[film.id] = {};
+		filmScreeningTypes.value[film.id] = {};
 	});
+}
+
+/**
+ * Mark the selected films and navigate to our details screen to display the
+ * results.
+ */
+function selectFilms() {
+	goToSets();
 }
 </script>

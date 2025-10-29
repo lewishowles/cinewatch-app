@@ -35,66 +35,9 @@ describe("film-list", () => {
 			const wrapper = mount();
 			const vm = wrapper.vm;
 
-			expect(vm.selectedFilmScreenings).toEqual({
+			expect(vm.filmScreeningTypes).toEqual({
 				1: {},
 				2: {},
-			});
-		});
-	});
-
-	describe("Computed", () => {
-		describe("selectedFilmCount", () => {
-			test("Detects selected films", () => {
-				const { data } = useFilmFinder();
-
-				data.value = { films: sampleFilms };
-
-				const wrapper = mount();
-				const vm = wrapper.vm;
-
-				expect(vm.selectedFilmCount).toBe(0);
-
-				vm.selectedFilmScreenings = {
-					1: {
-						10: true,
-					},
-					2: {
-						11: false,
-					},
-				};
-
-				expect(vm.selectedFilmCount).toBe(1);
-
-				vm.selectedFilmScreenings = {
-					1: {
-						10: true,
-					},
-					2: {
-						11: true,
-					},
-				};
-
-				expect(vm.selectedFilmCount).toBe(2);
-			});
-
-			test("Detects when no films are selected", () => {
-				const { data } = useFilmFinder();
-
-				data.value = { films: sampleFilms };
-
-				const wrapper = mount();
-				const vm = wrapper.vm;
-
-				vm.selectedFilmScreenings = {
-					1: {
-						10: false,
-					},
-					2: {
-						11: false,
-					},
-				};
-
-				expect(vm.selectedFilmCount).toBe(0);
 			});
 		});
 	});

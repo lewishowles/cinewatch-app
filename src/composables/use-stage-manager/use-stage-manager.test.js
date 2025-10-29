@@ -7,75 +7,75 @@ describe("use-stage-manager", () => {
 
 		expect(response).toBeTypeOf("object");
 		expect(response).toHaveProperty("isSearch");
-		expect(response).toHaveProperty("isResults");
-		expect(response).toHaveProperty("isDetails");
+		expect(response).toHaveProperty("isList");
+		expect(response).toHaveProperty("isSets");
 		expect(response).toHaveProperty("goToSearch");
-		expect(response).toHaveProperty("goToResults");
-		expect(response).toHaveProperty("goToDetails");
+		expect(response).toHaveProperty("goToList");
+		expect(response).toHaveProperty("goToSets");
 	});
 
 	test("Initial state is \"search\"", () => {
-		const { isSearch, isResults, isDetails } = useStageManager();
+		const { isSearch, isList, isSets } = useStageManager();
 
 		expect(isSearch.value).toBe(true);
-		expect(isResults.value).toBe(false);
-		expect(isDetails.value).toBe(false);
+		expect(isList.value).toBe(false);
+		expect(isSets.value).toBe(false);
 	});
 
 	describe("Methods", () => {
-		describe("goToResults", () => {
-			test("Switches to the results stage", () => {
-				const { isSearch, isResults, isDetails, goToResults } = useStageManager();
+		describe("goToList", () => {
+			test("Switches to the list stage", () => {
+				const { isSearch, isList, isSets, goToList } = useStageManager();
 
-				goToResults();
+				goToList();
 
 				expect(isSearch.value).toBe(false);
-				expect(isResults.value).toBe(true);
-				expect(isDetails.value).toBe(false);
+				expect(isList.value).toBe(true);
+				expect(isSets.value).toBe(false);
 			});
 		});
 
-		describe("goToDetails", () => {
-			test("Switches to the details stage", () => {
-				const { isSearch, isResults, isDetails, goToDetails } = useStageManager();
+		describe("goToSets", () => {
+			test("Switches to the sets stage", () => {
+				const { isSearch, isList, isSets, goToSets } = useStageManager();
 
-				goToDetails();
+				goToSets();
 
 				expect(isSearch.value).toBe(false);
-				expect(isResults.value).toBe(false);
-				expect(isDetails.value).toBe(true);
+				expect(isList.value).toBe(false);
+				expect(isSets.value).toBe(true);
 			});
 		});
 
 		describe("goToSearch", () => {
 			test("Switches back to the search stage", () => {
-				const { isSearch, isResults, isDetails, goToResults, goToSearch } = useStageManager();
+				const { isSearch, isList, isSets, goToList, goToSearch } = useStageManager();
 
-				goToResults();
+				goToList();
 
-				expect(isResults.value).toBe(true);
+				expect(isList.value).toBe(true);
 
 				goToSearch();
 
 				expect(isSearch.value).toBe(true);
-				expect(isResults.value).toBe(false);
-				expect(isDetails.value).toBe(false);
+				expect(isList.value).toBe(false);
+				expect(isSets.value).toBe(false);
 			});
 		});
 
 		describe("reset", () => {
 			test("Switches back to the initial stage", () => {
-				const { isSearch, isResults, isDetails, goToDetails, reset } = useStageManager();
+				const { isSearch, isList, isSets, goToSets, reset } = useStageManager();
 
-				goToDetails();
+				goToSets();
 
-				expect(isDetails.value).toBe(true);
+				expect(isSets.value).toBe(true);
 
 				reset();
 
 				expect(isSearch.value).toBe(true);
-				expect(isResults.value).toBe(false);
-				expect(isDetails.value).toBe(false);
+				expect(isList.value).toBe(false);
+				expect(isSets.value).toBe(false);
 			});
 		});
 	});

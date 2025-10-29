@@ -4,11 +4,11 @@ import { describe, expect, test, vi } from "vitest";
 
 import FilmFinder from "./film-finder.vue";
 
-const mockGoToResults = vi.fn();
+const mockgoToList = vi.fn();
 
 vi.mock("@/composables/use-stage-manager/use-stage-manager", () => ({
 	default: () => ({
-		goToResults: mockGoToResults,
+		goToList: mockgoToList,
 	}),
 }));
 
@@ -48,7 +48,7 @@ describe("film-finder", () => {
 
 				await vm.getFilms();
 
-				expect(mockGoToResults).toHaveBeenCalled();
+				expect(mockgoToList).toHaveBeenCalled();
 			});
 
 			test("Does not navigate on failed `get`", async() => {
@@ -59,7 +59,7 @@ describe("film-finder", () => {
 
 				await vm.getFilms();
 
-				expect(mockGoToResults).not.toHaveBeenCalled();
+				expect(mockgoToList).not.toHaveBeenCalled();
 			});
 		});
 	});
