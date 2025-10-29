@@ -1,6 +1,6 @@
 <template>
 	<div v-if="haveFilm" class="flex gap-8" data-test="showing-film">
-		<link-tag v-if="haveFilmTitle" v-bind="{ href: filmUrl, external: true, showExternalIcon: false }">
+		<link-tag v-if="haveFilmTitle" v-bind="{ href: filmUrl, external: true, showExternalIcon: false }" tabindex="-1">
 			<image-tag v-bind="{ src: posterUrl, alt: `Poster for ${film.title}` }" class="w-25 h-38" />
 		</link-tag>
 
@@ -65,7 +65,6 @@ const haveScreenings = computed(() => isNonEmptyArray(get(props.film, "screening
 // film.
 const selectedScreeningTypes = defineModel({
 	type: Object,
-	default: {},
 });
 
 // Metadata items to display under our film title.
