@@ -1,5 +1,7 @@
 import { computed, ref } from "vue";
+import useFilmSetCalculator from "@/composables/use-film-set-calculator/use-film-set-calculator";
 
+const { resetFilmSets } = useFilmSetCalculator();
 // The current, internal, stage.
 const stage = ref("search");
 
@@ -21,21 +23,26 @@ export default function useStageManager() {
 	const isSets = computed(() => stage.value === "sets");
 
 	/**
-	 * Set the current stage to results.
+	 * Set the current stage to search.
 	 */
 	function goToSearch() {
+		// When returning to the search for any reason, reset any selected
+		// films. Film data itself will be reset by the fact that a new data set
+		// will be loaded.
+		resetFilmSets();
+
 		stage.value = "search";
 	}
 
 	/**
-	 * Set the current stage to results.
+	 * Set the current stage to the film list.
 	 */
 	function goToList() {
 		stage.value = "results";
 	}
 
 	/**
-	 * Set the current stage to details.
+	 * Set the current stage to calculation results.
 	 */
 	function goToSets() {
 		stage.value = "sets";
