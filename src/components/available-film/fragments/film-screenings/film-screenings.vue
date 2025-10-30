@@ -48,7 +48,9 @@ const haveScreenings = computed(() => isNonEmptyArray(props.screenings));
 // Initialise our selected screenings.
 if (haveScreenings.value) {
 	props.screenings.forEach(screening => {
-		selectedScreenings.value[screening.id] = false;
+		if (!Object.hasOwn(selectedScreenings.value, screening.id)) {
+			selectedScreenings.value[screening.id] = false;
+		}
 	});
 }
 </script>

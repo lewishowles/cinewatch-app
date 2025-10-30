@@ -64,7 +64,6 @@ describe("film-list", () => {
 		cy.getByData("film-list-loading").should("not.exist");
 		cy.getByData("film-list-not-found").should("not.exist");
 		cy.getByData("film-list-list").shouldBeVisible();
-		cy.getByData("showing-film").shouldHaveCount(3);
-		cy.getByData("upcoming-film").shouldHaveCount(2);
+		cy.getByData("available-film").shouldHaveCount(3);
 	});
 });

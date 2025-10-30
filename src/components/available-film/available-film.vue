@@ -1,11 +1,11 @@
 <template>
-	<div v-if="haveFilm" class="flex gap-8" data-test="showing-film">
+	<div v-if="haveFilm" class="flex gap-8" data-test="available-film">
 		<link-tag v-if="haveFilmTitle" v-bind="{ href: filmUrl, external: true, showExternalIcon: false }" tabindex="-1">
 			<image-tag v-bind="{ src: posterUrl, alt: `Poster for ${film.title}` }" class="w-25 h-38" />
 		</link-tag>
 
 		<div class="flex flex-col">
-			<link-tag v-if="haveFilmTitle" class="text-xl font-bold no-underline text-grey-950 hocus:text-purple-800 hocus:underline" v-bind="{ href: filmUrl, external: true }" data-test="showing-film-title">
+			<link-tag v-if="haveFilmTitle" class="text-xl font-bold no-underline text-grey-950 hocus:text-purple-800 hocus:underline" v-bind="{ href: filmUrl, external: true }" data-test="available-film-title">
 				{{ film.title }}
 
 				<span class="sr-only">View more details on the Cineworld website</span>
@@ -78,7 +78,7 @@ const metadata = computed(() => {
 				"src": props.film.rating.url,
 				"alt": props.film.rating.alt,
 				"class": "size-5",
-				"data-test": "showing-film-rating",
+				"data-test": "available-film-rating",
 			},
 		});
 	}
@@ -88,7 +88,7 @@ const metadata = computed(() => {
 			component: "span",
 			text: props.film.genre,
 			props: {
-				"data-test": "showing-film-genre",
+				"data-test": "available-film-genre",
 			},
 		});
 	}
@@ -98,7 +98,7 @@ const metadata = computed(() => {
 			component: "span",
 			text: `${props.film.duration_minutes} mins`,
 			props: {
-				"data-test": "showing-film-duration",
+				"data-test": "available-film-duration",
 			},
 		});
 	}

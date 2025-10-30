@@ -60,7 +60,7 @@
 						</template>
 					</span>
 
-					<ui-button class="button--primary rounded-full animate-opacity -me-2" :class="{ 'opacity-0': selectedFilmsCount < 2, 'opacity-1': selectedFilmsCount > 1 }" @click="selectFilms">
+					<ui-button class="button--primary rounded-full animate-opacity -me-2" :class="{ 'opacity-0 pointer-events-none': selectedFilmsCount < 2, 'opacity-100': selectedFilmsCount > 1 }" @click="selectFilms">
 						Get best times
 					</ui-button>
 				</div>
@@ -87,7 +87,9 @@ const { filmScreeningTypes, selectedFilmsCount } = useFilmSetCalculator();
 // Initialise our selected screenings.
 if (haveFilms.value) {
 	availableFilms.value.forEach(film => {
-		filmScreeningTypes.value[film.id] = {};
+		if (!Object.hasOwn(filmScreeningTypes.value, film.id)) {
+			filmScreeningTypes.value[film.id] = {};
+		}
 	});
 }
 

@@ -4,8 +4,37 @@ import useFilmFinder from "@/composables/use-film-finder/use-film-finder.js";
 
 describe("use-film-set-calculator", () => {
 	const sampleFilms = [
-		{ id: "1", screenings: [{ id: "10" }] },
-		{ id: "2", screenings: [{ id: "11" }, { id: "12" }] },
+		{
+			id: "1",
+			screenings: [
+				{
+					id: "10",
+					label: "2D",
+					times: [
+						{ start: { label: "10:00" }, end: { label: "12:00" } },
+						{ start: { label: "12:00" }, end: { label: "14:00" } },
+					],
+				},
+			],
+		},
+		{
+			id: "2",
+			screenings: [
+				{
+					id: "11",
+					label: "IMAX",
+					times: [{ start: { label: "14:00" }, end: { label: "16:00" } }],
+				},
+				{
+					id: "12",
+					label: "3D",
+					times: [
+						{ start: { label: "10:00" }, end: { label: "12:00" } },
+						{ start: { label: "13:00" }, end: { label: "15:00" } },
+					],
+				},
+			],
+		},
 	];
 
 	afterEach(() => {
@@ -84,6 +113,98 @@ describe("use-film-set-calculator", () => {
 				filmScreeningTypes.value = {};
 
 				expect(selectedFilmsCount.value).toEqual(0);
+			});
+		});
+
+		describe("selectedFilmTimes", () => {
+			test("Returns appropriate times for the selected films", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, selectedFilmTimes } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 12: true } };
+
+				expect(selectedFilmTimes.value).toEqual([
+					{
+						id: "1",
+						times: [
+							{ start: { label: "10:00" }, end: { label: "12:00" }, type: "2D" },
+							{ start: { label: "12:00" }, end: { label: "14:00" }, type: "2D" },
+						],
+					},
+					{
+						id: "2",
+						times: [
+							{ start: { label: "10:00" }, end: { label: "12:00" }, type: "3D" },
+							{ start: { label: "13:00" }, end: { label: "15:00" }, type: "3D" },
+						],
+					},
+				]);
+			});
+
+			test("Returns an empty array if no films are selected", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, selectedFilmTimes } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				filmScreeningTypes.value = {};
+
+				expect(selectedFilmTimes.value).toEqual([]);
+			});
+
+			test("Ignores screenings with an invalid screening ID", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, selectedFilmTimes } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				filmScreeningTypes.value = { 1: { 99: true } };
+
+				expect(selectedFilmTimes.value).toEqual([]);
+			});
+
+			test("Ignores screenings with no times", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, selectedFilmTimes } = useFilmSetCalculator();
+
+				data.value = {
+					films: [
+						{
+							id: "1",
+							screenings: [{ id: "10", label: "Empty", times: [] }],
+						},
+					],
+				};
+
+				filmScreeningTypes.value = { 1: { 10: true } };
+
+				expect(selectedFilmTimes.value).toEqual([]);
+			});
+
+			test("Ignores films with no screenings", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, selectedFilmTimes } = useFilmSetCalculator();
+
+				data.value = {
+					films: [{ id: "1" }],
+				};
+
+				filmScreeningTypes.value = { 1: { 10: true } };
+
+				expect(selectedFilmTimes.value).toEqual([]);
+			});
+		});
+	});
+
+	describe("Methods", () => {
+		describe("resetFilmSets", () => {
+			test("Should reset film screening types", () => {
+				const { filmScreeningTypes, resetFilmSets } = useFilmSetCalculator();
+
+				filmScreeningTypes.value = { 1: { 10: true } };
+
+				resetFilmSets();
+
+				expect(filmScreeningTypes.value).toEqual({});
 			});
 		});
 	});

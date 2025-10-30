@@ -63,17 +63,17 @@ export default function useFilmSetCalculator() {
 		const films = [];
 
 		selectedFilms.value.forEach(film => {
-			const screenings = get(film, "screenings");
-			const screeningTypes = get(selectedFilmScreeningTypes.value, film.id);
+			const screeningsForFilm = get(film, "screenings");
+			const selectedScreeningTypesForFilm = get(selectedFilmScreeningTypes.value, film.id);
 
-			if (!isNonEmptyArray(screenings) || !isNonEmptyArray(screeningTypes)) {
+			if (!isNonEmptyArray(screeningsForFilm) || !isNonEmptyArray(selectedScreeningTypesForFilm)) {
 				return;
 			}
 
 			const times = [];
 
-			screeningTypes.forEach(screeningTypeId => {
-				const screening = screenings.find(screeningType => screeningType.id = screeningTypeId);
+			selectedScreeningTypesForFilm.forEach(screeningTypeId => {
+				const screening = screeningsForFilm.find(screeningType => screeningType.id === screeningTypeId);
 
 				if (!isNonEmptyObject(screening) || !isNonEmptyArray(screening.times)) {
 					return;
@@ -95,11 +95,19 @@ export default function useFilmSetCalculator() {
 		return films;
 	});
 
+	/**
+	 * Reset any selected films, especially if we're loading new data.
+	 */
+	function resetFilmSets() {
+		filmScreeningTypes.value = {};
+	}
+
 	return {
 		selectedFilmScreeningTypes,
 		filmScreeningTypes,
 		selectedFilmsCount,
 		selectedFilms,
 		selectedFilmTimes,
+		resetFilmSets,
 	};
 }

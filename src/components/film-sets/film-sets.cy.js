@@ -7,6 +7,7 @@ describe("film-sets", () => {
 	it("A component is rendered", () => {
 		mount();
 
+		cy.getByData("page-header").shouldBeVisible();
 		cy.getByData("film-sets").shouldBeVisible();
 	});
 });
