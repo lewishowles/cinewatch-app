@@ -23,6 +23,7 @@
 		</ul>
 	</div>
 
+	<pre>{{ filmSets }}</pre>
 	<pre>{{ selectedFilmTimes }}</pre>
 </template>
 
@@ -33,6 +34,6 @@ import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 import SelectedFilm from "./fragments/selected-film/selected-film.vue";
 
-const { selectedFilms, selectedFilmsCount, selectedFilmTimes } = useFilmSetCalculator();
+const { selectedFilms, selectedFilmsCount, selectedFilmTimes, filmSets } = useFilmSetCalculator();
 const { goToSearch, goToList } = useStageManager();
 </script>

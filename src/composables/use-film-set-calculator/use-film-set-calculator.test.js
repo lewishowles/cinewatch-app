@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, test } from "vitest";
+import { isNonEmptyString } from "@lewishowles/helpers/string";
 import useFilmSetCalculator from "./use-film-set-calculator.js";
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder.js";
 
@@ -11,8 +12,14 @@ describe("use-film-set-calculator", () => {
 					id: "10",
 					label: "2D",
 					times: [
-						{ start: { label: "10:00" }, end: { label: "12:00" } },
-						{ start: { label: "12:00" }, end: { label: "14:00" } },
+						{
+							start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
+							end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
+						},
+						{
+							start: { label: "12:30", value: "2025-10-29T12:30:00.000Z" },
+							end: { label: "14:00", value: "2025-10-29T14:00:00.000Z" },
+						},
 					],
 				},
 			],
@@ -23,14 +30,21 @@ describe("use-film-set-calculator", () => {
 				{
 					id: "11",
 					label: "IMAX",
-					times: [{ start: { label: "14:00" }, end: { label: "16:00" } }],
+					times: [
+						{
+							start: { label: "14:30", value: "2025-10-29T14:30:00.000Z" },
+							end: { label: "16:00", value: "2025-10-29T16:00:00.000Z" },
+						},
+					],
 				},
 				{
 					id: "12",
 					label: "3D",
 					times: [
-						{ start: { label: "10:00" }, end: { label: "12:00" } },
-						{ start: { label: "13:00" }, end: { label: "15:00" } },
+						{
+							start: { label: "16:30", value: "2025-10-29T16:30:00.000Z" },
+							end: { label: "18:00", value: "2025-10-29T18:00:00.000Z" },
+						},
 					],
 				},
 			],
@@ -128,15 +142,26 @@ describe("use-film-set-calculator", () => {
 					{
 						id: "1",
 						times: [
-							{ start: { label: "10:00" }, end: { label: "12:00" }, type: "2D" },
-							{ start: { label: "12:00" }, end: { label: "14:00" }, type: "2D" },
+							{
+								start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
+								end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
+								type: "2D",
+							},
+							{
+								start: { label: "12:30", value: "2025-10-29T12:30:00.000Z" },
+								end: { label: "14:00", value: "2025-10-29T14:00:00.000Z" },
+								type: "2D",
+							},
 						],
 					},
 					{
 						id: "2",
 						times: [
-							{ start: { label: "10:00" }, end: { label: "12:00" }, type: "3D" },
-							{ start: { label: "13:00" }, end: { label: "15:00" }, type: "3D" },
+							{
+								start: { label: "16:30", value: "2025-10-29T16:30:00.000Z" },
+								end: { label: "18:00", value: "2025-10-29T18:00:00.000Z" },
+								type: "3D",
+							},
 						],
 					},
 				]);
@@ -191,6 +216,94 @@ describe("use-film-set-calculator", () => {
 				filmScreeningTypes.value = { 1: { 10: true } };
 
 				expect(selectedFilmTimes.value).toEqual([]);
+			});
+		});
+
+		describe("filmGraph", () => {
+			test("Builds nodes and edges correctly for selected films", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 12: true } };
+
+				// Should flatten into nodes
+				expect(Array.isArray(filmGraph.value.nodes)).toBe(true);
+				expect(filmGraph.value.nodes.length).toBeGreaterThan(0);
+
+				// Each node should have a filmId
+				filmGraph.value.nodes.forEach(node => {
+					expect(isNonEmptyString(node.filmId)).toBe(true);
+				});
+
+				// Edges should be a Map keyed by node
+				expect(filmGraph.value.edges instanceof Map).toBe(true);
+			});
+
+			test("Returns an empty array if no films are selected", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				filmScreeningTypes.value = {};
+
+				expect(filmGraph.value).toEqual([]);
+			});
+
+			test("Returns an empty array invalid films are selected", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph } = useFilmSetCalculator();
+
+				data.value = { films: [] };
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 12: true } };
+
+				expect(filmGraph.value).toEqual([]);
+			});
+		});
+
+		describe("filmSets", () => {
+			test("Generates valid paths across films with correct wait times", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmSets } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				// Select screenings that can follow each other
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 11: true, 12: true } };
+
+				const sets = filmSets.value;
+
+				// Should generate multiple paths
+				expect(sets.length).toBeGreaterThan(0);
+
+				// Find a path that goes Film 1 (12:30–14:00) → Film 2
+				// (14:30–16:00)
+				const path = sets.find(r =>
+					r.path.some(p => p.filmId === "1" && p.start.label === "12:30") &&
+					r.path.some(p => p.filmId === "2" && p.start.label === "14:30"),
+				);
+
+				expect(path).toBeDefined();
+				expect(path.filmsSeen).toBe(2);
+
+				// Check wait time between 14:00 and 14:30 = 30 minutes
+				expect(path.totalWait).toBe(30 * 60 * 1000);
+			});
+
+			test("Returns single-film paths when no valid transitions exist", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmSets } = useFilmSetCalculator();
+
+				data.value = { films: sampleFilms };
+				// Only select Film 1
+				filmScreeningTypes.value = { 1: { 10: true } };
+
+				const sets = filmSets.value;
+
+				expect(sets.length).toBeGreaterThan(0);
+
+				sets.forEach(result => {
+					expect(result.filmsSeen).toEqual(1);
+				});
 			});
 		});
 	});

@@ -5,7 +5,7 @@
 				<slot />
 			</h1>
 
-			<div v-if="haveActions">
+			<div v-if="haveActions" class="text-sm">
 				<slot name="actions" />
 			</div>
 		</conditional-wrapper>
