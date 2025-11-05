@@ -1,6 +1,6 @@
 import { arrayLength, isNonEmptyArray } from "@lewishowles/helpers/array";
 import { computed, ref } from "vue";
-import { get, isNonEmptyObject } from "@lewishowles/helpers/object";
+import { get, isNonEmptyObject, keyBy, pick } from "@lewishowles/helpers/object";
 import { isNumber } from "@lewishowles/helpers/number";
 
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
@@ -52,6 +52,15 @@ export default function useFilmSetCalculator() {
 
 			return films;
 		}, []);
+	});
+
+	// Our selected films, keyed by their film ID
+	const selectedFilmsById = computed(() => {
+		if (!isNonEmptyArray(selectedFilms.value)) {
+			return {};
+		}
+
+		return keyBy(selectedFilms.value, "id");
 	});
 
 	// The number of films selected by the user to watch.
@@ -230,7 +239,13 @@ export default function useFilmSetCalculator() {
 
 		visitedFilmSet.add(startFilmId);
 
-		const newPath = [...path, startFilm];
+		const newPath = [
+			...path,
+			{
+				...pick(selectedFilmsById.value[startFilmId], ["title", "poster"]),
+				...startFilm,
+			},
+		];
 
 		// Always push the current path, even if it's partial. This allows us to
 		// track partial sequences, in case the full sequence is unobtainable or
