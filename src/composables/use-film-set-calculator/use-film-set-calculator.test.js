@@ -3,6 +3,20 @@ import { isNonEmptyString } from "@lewishowles/helpers/string";
 import useFilmSetCalculator from "./use-film-set-calculator.js";
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder.js";
 
+/**
+ * Calculate the total wait time for a given path.
+ */
+function calculateTotalWaitTimeForSet(set) {
+	return set.path.slice(1).reduce((accumulator, current, i) => {
+		const previous = set.path[i];
+
+		const start = new Date(previous.end.value);
+		const end = new Date(current.start.value);
+
+		return accumulator + (end.getTime() - start.getTime());
+	}, 0);
+}
+
 describe("use-film-set-calculator", () => {
 	const sampleFilms = [
 		{
@@ -270,14 +284,30 @@ describe("use-film-set-calculator", () => {
 				// Select screenings that can follow each other
 				filmScreeningTypes.value = { 1: { 10: true }, 2: { 11: true, 12: true } };
 
-				const sets = filmSets.value;
-
 				// Should generate multiple paths
-				expect(sets.length).toBeGreaterThan(0);
+				expect(filmSets.value.length).toBe(6);
+
+				filmSets.value.forEach(set => {
+					expect(set).toHaveProperty("filmsSeen");
+					expect(set).toHaveProperty("path");
+					expect(set).toHaveProperty("totalWait");
+					expect(set.filmsSeen).toBe(set.path.length);
+
+					// Check for chronological order of films.
+					for (let i = 1; i < set.path.length; i++) {
+						const previous = set.path[i - 1];
+						const current = set.path[i];
+
+						expect((new Date(current.start.value)) >= (new Date(previous.end.value))).toBe(true);
+					}
+
+					// Check for wait time consistency.
+					expect(set.totalWait).toBe(calculateTotalWaitTimeForSet(set));
+				});
 
 				// Find a path that goes Film 1 (12:30–14:00) → Film 2
 				// (14:30–16:00)
-				const path = sets.find(r =>
+				const path = filmSets.value.find(r =>
 					r.path.some(p => p.filmId === "1" && p.start.label === "12:30") &&
 					r.path.some(p => p.filmId === "2" && p.start.label === "14:30"),
 				);
@@ -304,6 +334,16 @@ describe("use-film-set-calculator", () => {
 				sets.forEach(result => {
 					expect(result.filmsSeen).toEqual(1);
 				});
+			});
+
+			test("Handles empty films gracefully", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmSets } = useFilmSetCalculator();
+
+				data.value = { films: [] };
+				filmScreeningTypes.value = {};
+
+				expect(filmSets.value).toEqual([]);
 			});
 		});
 	});

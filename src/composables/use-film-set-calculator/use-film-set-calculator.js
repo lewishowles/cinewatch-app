@@ -2,6 +2,7 @@ import { arrayLength, isNonEmptyArray } from "@lewishowles/helpers/array";
 import { computed, ref } from "vue";
 import { get, isNonEmptyObject, keyBy, pick } from "@lewishowles/helpers/object";
 import { isNumber } from "@lewishowles/helpers/number";
+import { nanoid } from "nanoid";
 
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 
@@ -251,6 +252,7 @@ export default function useFilmSetCalculator() {
 		// track partial sequences, in case the full sequence is unobtainable or
 		// contains too much waiting, for example.
 		results.push({
+			id: nanoid(),
 			path: newPath,
 			filmsSeen: visitedFilmSet.size,
 			totalWait: totalWaitTime,
