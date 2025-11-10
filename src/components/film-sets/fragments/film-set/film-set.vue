@@ -10,7 +10,7 @@
 			<li v-for="item in pathWithWaitTimes" :key="item.id">
 				<film-set-film v-if="item.type === 'film'" v-bind="{ film: item }" />
 
-				<div v-else-if="item.type === 'wait'" class="text-grey-500">
+				<div v-else-if="item.type === 'wait'" class="text-grey-500" data-test="film-set-wait">
 					{{ item.wait_time }} wait
 				</div>
 			</li>
