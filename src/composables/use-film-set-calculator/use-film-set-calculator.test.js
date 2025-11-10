@@ -159,12 +159,12 @@ describe("use-film-set-calculator", () => {
 							{
 								start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
 								end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
-								type: "2D",
+								screening_type: "2D",
 							},
 							{
 								start: { label: "12:30", value: "2025-10-29T12:30:00.000Z" },
 								end: { label: "14:00", value: "2025-10-29T14:00:00.000Z" },
-								type: "2D",
+								screening_type: "2D",
 							},
 						],
 					},
@@ -174,7 +174,7 @@ describe("use-film-set-calculator", () => {
 							{
 								start: { label: "16:30", value: "2025-10-29T16:30:00.000Z" },
 								end: { label: "18:00", value: "2025-10-29T18:00:00.000Z" },
-								type: "3D",
+								screening_type: "3D",
 							},
 						],
 					},
@@ -245,9 +245,9 @@ describe("use-film-set-calculator", () => {
 				expect(Array.isArray(filmGraph.value.nodes)).toBe(true);
 				expect(filmGraph.value.nodes.length).toBeGreaterThan(0);
 
-				// Each node should have a filmId
+				// Each node should have a film_id
 				filmGraph.value.nodes.forEach(node => {
-					expect(isNonEmptyString(node.filmId)).toBe(true);
+					expect(isNonEmptyString(node.film_id)).toBe(true);
 				});
 
 				// Edges should be a Map keyed by node
@@ -288,10 +288,10 @@ describe("use-film-set-calculator", () => {
 				expect(filmSets.value.length).toBe(6);
 
 				filmSets.value.forEach(set => {
-					expect(set).toHaveProperty("filmsSeen");
+					expect(set).toHaveProperty("films_seen");
 					expect(set).toHaveProperty("path");
-					expect(set).toHaveProperty("totalWait");
-					expect(set.filmsSeen).toBe(set.path.length);
+					expect(set).toHaveProperty("total_wait");
+					expect(set.films_seen).toBe(set.path.length);
 
 					// Check for chronological order of films.
 					for (let i = 1; i < set.path.length; i++) {
@@ -302,21 +302,21 @@ describe("use-film-set-calculator", () => {
 					}
 
 					// Check for wait time consistency.
-					expect(set.totalWait).toBe(calculateTotalWaitTimeForSet(set));
+					expect(set.total_wait).toBe(calculateTotalWaitTimeForSet(set));
 				});
 
 				// Find a path that goes Film 1 (12:30–14:00) → Film 2
 				// (14:30–16:00)
 				const path = filmSets.value.find(r =>
-					r.path.some(p => p.filmId === "1" && p.start.label === "12:30") &&
-					r.path.some(p => p.filmId === "2" && p.start.label === "14:30"),
+					r.path.some(p => p.film_id === "1" && p.start.label === "12:30") &&
+					r.path.some(p => p.film_id === "2" && p.start.label === "14:30"),
 				);
 
 				expect(path).toBeDefined();
-				expect(path.filmsSeen).toBe(2);
+				expect(path.films_seen).toBe(2);
 
 				// Check wait time between 14:00 and 14:30 = 30 minutes
-				expect(path.totalWait).toBe(30 * 60 * 1000);
+				expect(path.total_wait).toBe(30 * 60 * 1000);
 			});
 
 			test("Returns single-film paths when no valid transitions exist", () => {
@@ -332,7 +332,7 @@ describe("use-film-set-calculator", () => {
 				expect(sets.length).toBeGreaterThan(0);
 
 				sets.forEach(result => {
-					expect(result.filmsSeen).toEqual(1);
+					expect(result.films_seen).toEqual(1);
 				});
 			});
 

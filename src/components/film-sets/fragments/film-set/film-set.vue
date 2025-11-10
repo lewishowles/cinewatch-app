@@ -4,23 +4,15 @@
 			<slot name="title" />
 		</h2>
 
-		<dl class="film-set-metadata flex items-center text-sm gap-2 mb-6">
-			<dt>Total time</dt>
-			<dd>?h ?m</dd>
-
-			<dt>Starts</dt>
-			<dd>??:??</dd>
-
-			<dt>Ends</dt>
-			<dd>??:??</dd>
-
-			<dt>Total wait time</dt>
-			<dd>?h ?m</dd>
-		</dl>
+		<film-set-metadata v-bind="{ set }" />
 
 		<ul class="film-set-films flex flex-col gap-6">
-			<li v-for="film in set.path" :key="film.id">
-				<film-set-film v-bind="{ film }" />
+			<li v-for="item in pathWithWaitTimes" :key="item.id">
+				<film-set-film v-if="item.type === 'film'" v-bind="{ film: item }" />
+
+				<div v-else-if="item.type === 'wait'" class="text-grey-500">
+					{{ item.wait_time }} wait
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -28,10 +20,15 @@
 
 <script setup>
 import { computed, useSlots } from "vue";
+import { get, isNonEmptyObject } from "@lewishowles/helpers/object";
 import { isNonEmptyArray } from "@lewishowles/helpers/array";
 import { isNonEmptySlot } from "@lewishowles/helpers/vue";
+import { nanoid } from "nanoid";
+import useDateHelpers from "@/composables/use-date-helpers/use-date-helpers";
+
 
 import FilmSetFilm from "./fragments/film-set-film/film-set-film.vue";
+import FilmSetMetadata from "./fragments/film-set-metadata/film-set-metadata.vue";
 
 const props = defineProps({
 	/**
@@ -44,29 +41,69 @@ const props = defineProps({
 	},
 });
 
+const { dateDifference } = useDateHelpers();
 const slots = useSlots();
 // Whether a title has been provided. This is provided by the parent, as the
 // parent controls how sets are displayed, and can provide an index to
 // differentiate sets.
 const haveTitle = computed(() => isNonEmptySlot(slots.title));
+// Our path, extracted from the provided set.
+const path = computed(() => get(props.set, "path"));
 // Whether we have a path for this set.
-const havePath = computed(() => isNonEmptyArray(props.set.path));
+const havePath = computed(() => isNonEmptyArray(path.value));
+
+// Add "wait time" elements to our path. We separate films from waits with a
+// "type" property.
+const pathWithWaitTimes = computed(() => {
+	if (!havePath.value) {
+		return [];
+	}
+
+	return path.value.flatMap((film, index) => {
+		const nextFilm = path.value[index + 1];
+
+		if (!isNonEmptyObject(nextFilm)) {
+			return { ...film, type: "film" };
+		}
+
+		return [
+			{
+				...film,
+				type: "film",
+			},
+			{
+				id: nanoid(),
+				wait_time: getWaitBetweenFilms(film, nextFilm),
+				type: "wait",
+			},
+		];
+	});
+});
+
+/**
+ * Get the time between two films in a human-readable form.
+ *
+ * @param  {object}  firstFilm
+ *     The details of a film, containing an "end.value"
+ * @param  {object}  secondFilm
+ *     The details of a film, containing a "start.value"
+ */
+function getWaitBetweenFilms(firstFilm, secondFilm) {
+	const start = get(secondFilm, "start.value");
+	const startDate = new Date(start);
+	const end = get(firstFilm, "end.value");
+	const endDate = new Date(end);
+
+	if (start === null || end === null) {
+		return "Unknown";
+	}
+
+	return dateDifference(startDate, endDate);
+}
 </script>
 
 <style>
 @reference "@/assets/css/main.css";
-
-.film-set-metadata dd {
-	@apply font-bold;
-}
-
-.film-set-metadata dd + dt {
-	@apply flex items-center gap-2;
-
-	&::before {
-		content: "•";
-	}
-}
 
 .film-set-films {
 	@apply relative;
@@ -81,9 +118,18 @@ const havePath = computed(() => isNonEmptyArray(props.set.path));
 		@apply flex items-center;
 
 		&::before {
-			@apply size-[9px] bg-grey-500 rounded-full me-8;
+			@apply bg-grey-500 rounded-full me-8;
+
+			block-size: 9px;
+			inline-size: 9px;
 
 			content: "";
+		}
+
+		&:nth-child(even) {
+			&::before {
+				@apply bg-grey-200;
+			}
 		}
 	}
 }

@@ -24,9 +24,9 @@
 			</ul>
 		</div>
 
-		<film-set v-for="set in usableFilmSets" :key="set.id" v-bind="{ set }">
+		<film-set v-for="(set, filmSetIndex) in usableFilmSets" :key="set.id" v-bind="{ set }">
 			<template #title>
-				Option ??
+				Option {{ filmSetIndex + 1 }}
 			</template>
 		</film-set>
 	</div>
@@ -54,6 +54,6 @@ const usableFilmSets = computed(() => {
 		return [];
 	}
 
-	return filmSets.value.filter(filmSet => get(filmSet, "filmsSeen") > 1);
+	return filmSets.value.filter(filmSet => get(filmSet, "films_seen") > 1);
 });
 </script>

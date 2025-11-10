@@ -9,7 +9,7 @@ const sampleSet = {
 			poster: {
 				url: "https://regalcdn.azureedge.net/CW/HorrorSeasonCorpseBride20thAnniversary/HO00013599/TV_SmallPosterImage/20250908-114736335.jpg",
 			},
-			filmId: "jtevaOo315JZ_1eE5bbtK",
+			film_id: "jtevaOo315JZ_1eE5bbtK",
 			start: {
 				label: "14:40",
 				value: "2025-10-29T14:40:00.000Z",
@@ -26,7 +26,7 @@ const sampleSet = {
 			poster: {
 				url: "https://regalcdn.azureedge.net/CW/TronAres/HO00013436/TV_SmallPosterImage/20251006-100039583.jpg",
 			},
-			filmId: "Ckef-h0bdoSuQ6SQHpFXA",
+			film_id: "Ckef-h0bdoSuQ6SQHpFXA",
 			start: {
 				label: "20:40",
 				value: "2025-10-29T20:40:00.000Z",
@@ -39,8 +39,8 @@ const sampleSet = {
 			type: "2D",
 		},
 	],
-	filmsSeen: 2,
-	totalWait: 16980000,
+	films_seen: 2,
+	total_wait: 16980000,
 };
 
 const mount = createMount(FilmSet, { set: sampleSet });
@@ -50,6 +50,7 @@ describe("film-set", () => {
 		mount();
 
 		cy.getByData("film-set").shouldBeVisible();
+		cy.getByData("film-set-metadata").shouldBeVisible();
 		cy.getByData("film-set-film").shouldHaveCount(2);
 	});
 });

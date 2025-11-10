@@ -96,7 +96,7 @@ export default function useFilmSetCalculator() {
 				screening.times.forEach(time => {
 					times.push({
 						...time,
-						type: screening.label,
+						screening_type: screening.label,
 					});
 				});
 			});
@@ -123,7 +123,7 @@ export default function useFilmSetCalculator() {
 
 		// Flatten all selected films into a list of screening nodes
 		const nodes = selectedFilmTimes.value.flatMap(film =>
-			film.times.map(time => ({ filmId: film.id, ...time })),
+			film.times.map(time => ({ film_id: film.id, ...time })),
 		);
 
 		// Build an adjacency list. For each node, which screenings can follow
@@ -132,7 +132,7 @@ export default function useFilmSetCalculator() {
 
 		nodes.forEach(node => {
 			const nextNodes = nodes.filter(
-				other => other.filmId !== node.filmId && canFilmFollow(node, other),
+				other => other.film_id !== node.film_id && canFilmFollow(node, other),
 			);
 
 			edges.set(node, nextNodes.map(next => ({
@@ -161,12 +161,12 @@ export default function useFilmSetCalculator() {
 		return results.sort((a, b) => {
 			// Maximum number of films seen takes priority, given we're allowing
 			// partial sets.
-			if (b.filmsSeen !== a.filmsSeen) {
-				return b.filmsSeen - a.filmsSeen;
+			if (b.films_seen !== a.films_seen) {
+				return b.films_seen - a.films_seen;
 			}
 
 			// The wait time between films is secondary.
-			return a.totalWait - b.totalWait;
+			return a.total_wait - b.total_wait;
 		});
 	});
 
@@ -228,9 +228,9 @@ export default function useFilmSetCalculator() {
 	// Depth‑first search to explore all possible film sequences.
 	// Guards against invalid inputs so we don't recurse into bad data.
 	function explorePaths(startFilm, visitedFilms, path, totalWaitTime, edges, results) {
-		const startFilmId = get(startFilm, "filmId");
+		const filmId = get(startFilm, "film_id");
 
-		if (!startFilmId) {
+		if (!filmId) {
 			return;
 		}
 
@@ -238,12 +238,12 @@ export default function useFilmSetCalculator() {
 			? visitedFilms
 			: new Set(visitedFilms);
 
-		visitedFilmSet.add(startFilmId);
+		visitedFilmSet.add(filmId);
 
 		const newPath = [
 			...path,
 			{
-				...pick(selectedFilmsById.value[startFilmId], ["title", "poster"]),
+				...pick(selectedFilmsById.value[filmId], ["title", "poster"]),
 				...startFilm,
 			},
 		];
@@ -254,15 +254,15 @@ export default function useFilmSetCalculator() {
 		results.push({
 			id: nanoid(),
 			path: newPath,
-			filmsSeen: visitedFilmSet.size,
-			totalWait: totalWaitTime,
+			films_seen: visitedFilmSet.size,
+			total_wait: totalWaitTime,
 		});
 
 		// Get all possible next edges.
 		const nextEdges = edges?.get(startFilm) || [];
 
 		nextEdges.forEach(({ node: nextFilm, waitTime }) => {
-			const nextFilmId = get(nextFilm, "filmId");
+			const nextFilmId = get(nextFilm, "film_id");
 
 			if (!nextFilmId) {
 				return;
