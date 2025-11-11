@@ -51,6 +51,7 @@ describe("film-set", () => {
 
 		cy.getByData("film-set").shouldBeVisible();
 		cy.getByData("film-set-metadata").shouldBeVisible();
+		cy.getByData("film-set-chart").shouldBeVisible();
 		cy.getByData("film-set-film").shouldHaveCount(2);
 		cy.getByData("film-set-wait").shouldHaveCount(1);
 	});

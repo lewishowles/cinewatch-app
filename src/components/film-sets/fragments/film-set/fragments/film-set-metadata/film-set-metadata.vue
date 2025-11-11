@@ -1,5 +1,5 @@
 <template>
-	<dl v-if="haveSet" class="film-set-metadata flex items-center text-sm gap-2 mb-6" data-test="film-set-metadata">
+	<dl v-if="haveSet" class="film-set-metadata flex items-center text-sm gap-2 mb-3" data-test="film-set-metadata">
 		<dt>Total time</dt>
 		<dd>{{ totalTime }}</dd>
 
@@ -12,12 +12,17 @@
 		<dt>Total wait time</dt>
 		<dd>{{ totalWaitTime }}</dd>
 	</dl>
+
+	<div v-if="havePath" class="h-2.5 rounded-full bg-grey-100 mb-6 relative" aria-hidden="true" data-test="film-set-time-chart">
+		<div v-for="segment in dayChart" :key="segment.film_id" class="h-2.5 rounded-full bg-purple-600 absolute inset-y-0" :style="{ 'inset-inline-start': segment.start, 'inset-inline-end': segment.end }" />
+	</div>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { firstDefined, isNonEmptyArray, lastDefined } from "@lewishowles/helpers/array";
 import { get, isNonEmptyObject } from "@lewishowles/helpers/object";
+import { round } from "@lewishowles/helpers/number";
 import useDateHelpers from "@/composables/use-date-helpers/use-date-helpers";
 
 const props = defineProps({
@@ -30,7 +35,7 @@ const props = defineProps({
 	},
 });
 
-const { dateDifference, millisecondsToHumanTime } = useDateHelpers();
+const { dateDifference, getDayProgress, millisecondsToHumanTime } = useDateHelpers();
 // Whether we have a set that seems valid.
 const haveSet = computed(() => isNonEmptyObject(props.set));
 // The total wait time of our set, in human-readable form.
@@ -51,15 +56,13 @@ const totalTime = computed(() => {
 	}
 
 	const start = get(firstFilm.value, "start.value");
-	const startDate = new Date(start);
 	const end = get(lastFilm.value, "end.value");
-	const endDate = new Date(end);
 
 	if (start === null || end === null) {
 		return "Unknown";
 	}
 
-	return dateDifference(startDate, endDate);
+	return dateDifference(new Date(start), new Date(end));
 });
 
 // The start time of the first film in this set.
@@ -78,6 +81,42 @@ const endTime = computed(() => {
 	}
 
 	return get(lastFilm.value, "end.label") || "Unknown";
+});
+
+// Data for a chart representing the films on a single day, containing
+// information for the start and end of each film on a horizontal bar.
+const dayChart = computed(() => {
+	if (!havePath.value) {
+		return [];
+	}
+
+	return path.value.reduce((chart, film) => {
+		if (!isNonEmptyObject(film)) {
+			return chart;
+		}
+
+		const start = getDayProgress(get(film, "start.value"));
+
+		let end = getDayProgress(get(film, "end.value"));
+
+		// If our end is less than our start, that means the film ended after
+		// midnight, which we want to simplify on our chart.
+		if (end < start) {
+			end = 100;
+		}
+
+		// Since inset-inline-end is fully to the "end" at 0%, we need to invert
+		// our number.
+		end = round(100 - end, 2);
+
+		chart.push({
+			film_id: film.film_id,
+			start: `${start}%`,
+			end: `${end}%`,
+		});
+
+		return chart;
+	}, []);
 });
 </script>
 

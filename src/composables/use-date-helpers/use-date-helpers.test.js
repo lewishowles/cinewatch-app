@@ -88,5 +88,42 @@ describe("use-date-helpers", () => {
 				expect(millisecondsToHumanTime(2940000)).toBe("49m");
 			});
 		});
+
+		describe("getDayProgress", () => {
+			describe("Handles in invalid date", () => {
+				test.for([
+					["boolean (true)", true],
+					["boolean (false)", false],
+					["number (positive)", 1],
+					["number (negative)", -1],
+					["number (NaN)", NaN],
+					["string (non-empty)", "string"],
+					["string (empty)", ""],
+					["object (non-empty)", { property: "value" }],
+					["object (empty)", {}],
+					["array (non-empty)", [1, 2, 3]],
+					["array (empty)", []],
+					["null", null],
+					["undefined", undefined],
+					["Invalid Date", new Date("Invalid")],
+				])("%s", ([, input]) => {
+					const { getDayProgress } = useDateHelpers();
+
+					expect(getDayProgress(input)).toBe(0);
+				});
+			});
+
+			test("Converts a date into a percentage", () => {
+				const { getDayProgress } = useDateHelpers();
+
+				expect(getDayProgress(startDate)).toBe(77.15);
+			});
+
+			test("Converts a string date into a percentage", () => {
+				const { getDayProgress } = useDateHelpers();
+
+				expect(getDayProgress("2025-10-29T20:20:00.000Z")).toBe(84.72);
+			});
+		});
 	});
 });
