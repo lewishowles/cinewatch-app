@@ -37,7 +37,7 @@
 				<p>When selecting films to watch, you select individual types of screening, rather than films as a whole. This lets you prioritise, or disallow, IMAX, for example. To continue, select two or more films.</p>
 			</div>
 
-			<div class="flex flex-col gap-4" data-test="film-list-list">
+			<div class="flex flex-col gap-4 mb-20" data-test="film-list-list">
 				<p class="text-sm">
 					{{ availableFilmsCount }} films showing on this date. {{ totalFilmsCount }} total films available to book.
 				</p>
