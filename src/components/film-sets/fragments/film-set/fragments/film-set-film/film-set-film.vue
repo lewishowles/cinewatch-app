@@ -4,8 +4,10 @@
 
 		<div class="flex flex-col">
 			<span class="font-semibold text-grey-950">{{ film.title }}</span>
-			<span v-if="hasScreeningTime" class="text-xs text-grey-500 flex items-baseline">
-				{{ film.start.label }}–{{ film.end.label }}
+			<span v-if="hasScreeningTime" class="text-xs text-grey-500 flex items-baseline gap-2">
+				<span>{{ film.start.label }}–{{ film.end.label }}</span>
+				<span aria-hidden="true">•</span>
+				<span>{{ film.screening_type }}</span>
 			</span>
 		</div>
 	</div>
