@@ -24,11 +24,15 @@
 			</ul>
 		</div>
 
-		<film-set v-for="(set, filmSetIndex) in usableFilmSets" :key="set.id" v-bind="{ set }">
-			<template #title>
-				Option {{ filmSetIndex + 1 }}
-			</template>
-		</film-set>
+		<film-set v-for="set in fullFilmSets" :key="set.id" v-bind="{ set }" />
+
+		<template v-if="havePartialFilmSets">
+			<alert-message type="warning">
+				The following options do not contain all {{ selectedFilmsCount }} films.
+			</alert-message>
+
+			<film-set v-for="set in partialFilmSets" :key="set.id" v-bind="{ set }" />
+		</template>
 	</div>
 </template>
 
@@ -47,13 +51,33 @@ import SelectedFilm from "./fragments/selected-film/selected-film.vue";
 const { selectedFilms, selectedFilmsCount, filmSets } = useFilmSetCalculator();
 const { goToSearch, goToList } = useStageManager();
 
-// Our "usable" film sets. Sets with just one film aren't really reasonable, as
-// they're not providing any new information.
-const usableFilmSets = computed(() => {
+// Film sets that contain all of the films the user wanted to watch.
+const fullFilmSets = computed(() => {
 	if (!isNonEmptyArray(filmSets.value)) {
 		return [];
 	}
 
-	return filmSets.value.filter(filmSet => get(filmSet, "films_seen") > 1);
+	return filmSets.value.filter(filmSet => {
+		const filmsSeen = get(filmSet, "films_seen");
+
+		return filmsSeen === selectedFilmsCount.value;
+	});
 });
+
+// Film sets that contain some of the selected films, but more than one, as a
+// set with a single film isn't providing anything new.
+const partialFilmSets = computed(() => {
+	if (!isNonEmptyArray(filmSets.value)) {
+		return [];
+	}
+
+	return filmSets.value.filter(filmSet => {
+		const filmsSeen = get(filmSet, "films_seen");
+
+		return filmsSeen < selectedFilmsCount.value && filmsSeen > 1;
+	});
+});
+
+// Whether we have any partial film sets to display.
+const havePartialFilmSets = computed(() => isNonEmptyArray(partialFilmSets.value));
 </script>
