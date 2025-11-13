@@ -1,12 +1,18 @@
 <template>
 	<div v-if="havePath" data-test="film-set">
-		<h2 v-if="haveTitle" class="text-lg font-bold text-grey-950 mb-2">
 			<slot name="title" />
-		</h2>
+		<div class="flex flex-wrap items-center justify-between mb-2">
+			<h2 class="text-lg font-bold text-grey-950">
+			</h2>
+
+			<ui-button class="link text-sm" icon-end="icon-external" @click="openBookingPages">
+				Open booking pages
+			</ui-button>
+		</div>
 
 		<film-set-metadata v-bind="{ set }" />
 
-		<ul class="film-set-films flex flex-col gap-6">
+		<ul class="film-set-films flex flex-col gap-6" data-test="film-set-chart">
 			<li v-for="item in pathWithWaitTimes" :key="item.id">
 				<film-set-film v-if="item.type === 'film'" v-bind="{ film: item }" />
 
@@ -19,10 +25,9 @@
 </template>
 
 <script setup>
-import { computed, useSlots } from "vue";
+import { computed } from "vue";
 import { get, isNonEmptyObject } from "@lewishowles/helpers/object";
-import { isNonEmptyArray } from "@lewishowles/helpers/array";
-import { isNonEmptySlot } from "@lewishowles/helpers/vue";
+import { isNonEmptyArray, pluck } from "@lewishowles/helpers/array";
 import { nanoid } from "nanoid";
 import useDateHelpers from "@/composables/use-date-helpers/use-date-helpers";
 
@@ -42,11 +47,6 @@ const props = defineProps({
 });
 
 const { dateDifference } = useDateHelpers();
-const slots = useSlots();
-// Whether a title has been provided. This is provided by the parent, as the
-// parent controls how sets are displayed, and can provide an index to
-// differentiate sets.
-const haveTitle = computed(() => isNonEmptySlot(slots.title));
 // Our path, extracted from the provided set.
 const path = computed(() => get(props.set, "path"));
 // Whether we have a path for this set.
@@ -99,6 +99,19 @@ function getWaitBetweenFilms(firstFilm, secondFilm) {
 	}
 
 	return dateDifference(startDate, endDate);
+}
+
+/**
+ * Find and open the list of booking URLs for the films in the current set.
+ */
+function openBookingPages() {
+	if (!havePath.value) {
+		return;
+	}
+
+	pluck(path.value, "booking_url").forEach(url => {
+		window.open(url, "_blank");
+	});
 }
 </script>
 
