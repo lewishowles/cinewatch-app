@@ -158,7 +158,8 @@ export default function useFilmSetCalculator() {
 			explorePaths(startNode, new Set(), [], 0, get(filmGraph.value, "edges"), results);
 		});
 
-		return results.sort((a, b) => {
+		// Sort our sets.
+		results.sort((a, b) => {
 			// Maximum number of films seen takes priority, given we're allowing
 			// partial sets.
 			if (b.films_seen !== a.films_seen) {
@@ -167,6 +168,12 @@ export default function useFilmSetCalculator() {
 
 			// The wait time between films is secondary.
 			return a.total_wait - b.total_wait;
+		});
+
+		return results.map((result, index) => {
+			result.continuous_index = index + 1;
+
+			return result;
 		});
 	});
 
@@ -254,7 +261,7 @@ export default function useFilmSetCalculator() {
 		results.push({
 			id: nanoid(),
 			path: newPath,
-			films_seen: visitedFilmSet.size,
+			films_seen: newPath.length,
 			total_wait: totalWaitTime,
 		});
 

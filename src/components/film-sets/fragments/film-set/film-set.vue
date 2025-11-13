@@ -1,8 +1,8 @@
 <template>
 	<div v-if="havePath" data-test="film-set">
-			<slot name="title" />
 		<div class="flex flex-wrap items-center justify-between mb-2">
 			<h2 class="text-lg font-bold text-grey-950">
+				Option {{ set.continuous_index }}
 			</h2>
 
 			<ui-button class="link text-sm" icon-end="icon-external" @click="openBookingPages">

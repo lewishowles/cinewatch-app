@@ -287,11 +287,12 @@ describe("use-film-set-calculator", () => {
 				// Should generate multiple paths
 				expect(filmSets.value.length).toBe(6);
 
-				filmSets.value.forEach(set => {
+				filmSets.value.forEach((set, index) => {
 					expect(set).toHaveProperty("films_seen");
 					expect(set).toHaveProperty("path");
 					expect(set).toHaveProperty("total_wait");
 					expect(set.films_seen).toBe(set.path.length);
+					expect(set.continuous_index).toBe(index + 1);
 
 					// Check for chronological order of films.
 					for (let i = 1; i < set.path.length; i++) {
