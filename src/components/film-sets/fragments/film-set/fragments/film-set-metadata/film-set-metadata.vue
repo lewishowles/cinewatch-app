@@ -1,16 +1,33 @@
 <template>
 	<dl v-if="haveSet" class="film-set-metadata flex items-center text-sm gap-2 mb-3" data-test="film-set-metadata">
+		<template v-if="!includesAllFilms">
+			<dt class="text-yellow-800">
+				Films
+			</dt>
+			<dd class="text-yellow-800">
+				{{ set.films_seen }} / {{ selectedFilmsCount }}
+			</dd>
+		</template>
+
 		<dt>Total time</dt>
-		<dd>{{ totalTime }}</dd>
+		<dd class="font-bold">
+			{{ totalTime }}
+		</dd>
 
 		<dt>Starts</dt>
-		<dd>{{ startTime }}</dd>
+		<dd class="font-bold">
+			{{ startTime }}
+		</dd>
 
 		<dt>Ends</dt>
-		<dd>{{ endTime }}</dd>
+		<dd class="font-bold">
+			{{ endTime }}
+		</dd>
 
 		<dt>Total wait time</dt>
-		<dd>{{ totalWaitTime }}</dd>
+		<dd class="font-bold">
+			{{ totalWaitTime }}
+		</dd>
 	</dl>
 
 	<div v-if="havePath" class="h-2.5 rounded-full bg-grey-100 mb-6 relative" aria-hidden="true" data-test="film-set-time-chart">
@@ -24,6 +41,7 @@ import { firstDefined, isNonEmptyArray, lastDefined } from "@lewishowles/helpers
 import { get, isNonEmptyObject } from "@lewishowles/helpers/object";
 import { round } from "@lewishowles/helpers/number";
 import useDateHelpers from "@/composables/use-date-helpers/use-date-helpers";
+import useFilmSetCalculator from "@/composables/use-film-set-calculator/use-film-set-calculator";
 
 const props = defineProps({
 	/**
@@ -36,6 +54,7 @@ const props = defineProps({
 });
 
 const { dateDifference, getDayProgress, millisecondsToHumanTime } = useDateHelpers();
+const { selectedFilmsCount } = useFilmSetCalculator();
 // Whether we have a set that seems valid.
 const haveSet = computed(() => isNonEmptyObject(props.set));
 // The total wait time of our set, in human-readable form.
@@ -48,6 +67,8 @@ const havePath = computed(() => isNonEmptyArray(path.value));
 const firstFilm = computed(() => firstDefined(path.value));
 // The last film in the provided set.
 const lastFilm = computed(() => lastDefined(path.value));
+// Whether this set contains all of the selected films.
+const includesAllFilms = computed(() => get(props.set, "films_seen") === selectedFilmsCount.value);
 
 // The total time, from the start of the first film, to the end of the last.
 const totalTime = computed(() => {
@@ -122,10 +143,6 @@ const dayChart = computed(() => {
 
 <style>
 @reference "@/assets/css/main.css";
-
-.film-set-metadata dd {
-	@apply font-bold;
-}
 
 .film-set-metadata dd + dt {
 	@apply flex items-center gap-2;

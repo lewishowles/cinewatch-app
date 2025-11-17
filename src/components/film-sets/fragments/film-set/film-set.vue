@@ -1,7 +1,7 @@
 <template>
 	<div v-if="havePath" data-test="film-set">
 		<div class="flex flex-wrap items-center justify-between mb-2">
-			<h2 class="text-lg font-bold text-grey-950">
+			<h2 class="text-lg font-bold text-grey-950" :class="{ 'text-yellow-800': !includesAllFilms }">
 				Option {{ set.continuous_index }}
 			</h2>
 
@@ -29,8 +29,8 @@ import { computed } from "vue";
 import { get, isNonEmptyObject } from "@lewishowles/helpers/object";
 import { isNonEmptyArray, pluck } from "@lewishowles/helpers/array";
 import { nanoid } from "nanoid";
+import useFilmSetCalculator from "@/composables/use-film-set-calculator/use-film-set-calculator";
 import useDateHelpers from "@/composables/use-date-helpers/use-date-helpers";
-
 
 import FilmSetFilm from "./fragments/film-set-film/film-set-film.vue";
 import FilmSetMetadata from "./fragments/film-set-metadata/film-set-metadata.vue";
@@ -46,11 +46,14 @@ const props = defineProps({
 	},
 });
 
+const { selectedFilmsCount } = useFilmSetCalculator();
 const { dateDifference } = useDateHelpers();
 // Our path, extracted from the provided set.
 const path = computed(() => get(props.set, "path"));
 // Whether we have a path for this set.
 const havePath = computed(() => isNonEmptyArray(path.value));
+// Whether this set contains all of the selected films.
+const includesAllFilms = computed(() => get(props.set, "films_seen") === selectedFilmsCount.value);
 
 // Add "wait time" elements to our path. We separate films from waits with a
 // "type" property.
