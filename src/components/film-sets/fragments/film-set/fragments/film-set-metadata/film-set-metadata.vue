@@ -4,28 +4,28 @@
 			<dt class="text-yellow-800">
 				Films
 			</dt>
-			<dd class="text-yellow-800">
+			<dd class="text-yellow-800" data-test="film-set-metadata-films-seen-value">
 				{{ set.films_seen }} / {{ selectedFilmsCount }}
 			</dd>
 		</template>
 
 		<dt>Total time</dt>
-		<dd class="font-bold">
+		<dd class="font-bold" data-test="film-set-metadata-total-time-value">
 			{{ totalTime }}
 		</dd>
 
 		<dt>Starts</dt>
-		<dd class="font-bold">
+		<dd class="font-bold" data-test="film-set-metadata-starts-value">
 			{{ startTime }}
 		</dd>
 
 		<dt>Ends</dt>
-		<dd class="font-bold">
+		<dd class="font-bold" data-test="film-set-metadata-ends-value">
 			{{ endTime }}
 		</dd>
 
 		<dt>Total wait time</dt>
-		<dd class="font-bold">
+		<dd class="font-bold" data-test="film-set-metadata-total-wait-value">
 			{{ totalWaitTime }}
 		</dd>
 	</dl>

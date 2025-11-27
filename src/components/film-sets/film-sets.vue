@@ -41,11 +41,11 @@
 		<film-set v-for="set in fullFilmSets" :key="set.id" v-bind="{ set }" />
 
 		<template v-if="havePartialFilmSets">
-			<alert-message type="warning">
+			<alert-message type="warning" data-test="film-sets-partial-sets-warning">
 				The following options do not contain all {{ selectedFilmsCount }} films.
 			</alert-message>
 
-			<film-set v-for="set in partialFilmSets" :key="set.id" v-bind="{ set }" />
+			<film-set v-for="set in partialFilmSets" :key="set.id" v-bind="{ set }" data-test="partial-film-set" />
 		</template>
 	</div>
 </template>
@@ -62,7 +62,7 @@ import FilmSet from "./fragments/film-set/film-set.vue";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 import SelectedFilm from "./fragments/selected-film/selected-film.vue";
 
-const { selectedFilms, selectedFilmsCount, filmSets } = useFilmSetCalculator();
+const { selectedFilms, selectedFilmsCount, filmSets, haveFilmSets } = useFilmSetCalculator();
 const { goToSearch, goToList } = useStageManager();
 
 // Film sets that contain all of the films the user wanted to watch.

@@ -1,13 +1,13 @@
 <template>
 	<div v-if="haveFilm" class="flex gap-2 items-center" data-test="film-set-film">
-		<image-tag v-bind="{ src: posterUrl, alt: `Poster for ${film.title}` }" class="w-7 h-10 rounded" />
+		<image-tag v-bind="{ src: posterUrl, alt: `Poster for ${film.title}` }" class="w-7 h-10 rounded" data-test="film-set-film-poster" />
 
 		<div class="flex flex-col">
-			<span class="font-semibold text-grey-950">{{ film.title }}</span>
+			<span class="font-semibold text-grey-950" data-test="film-set-film-title">{{ film.title }}</span>
 			<span v-if="hasScreeningTime" class="text-xs text-grey-500 flex items-baseline gap-2">
-				<span>{{ film.start.label }}–{{ film.end.label }}</span>
+				<span data-test="film-set-film-times">{{ film.start.label }}–{{ film.end.label }}</span>
 				<span aria-hidden="true">•</span>
-				<span>{{ film.screening_type }}</span>
+				<span data-test="film-set-film-screening-type">{{ film.screening_type }}</span>
 			</span>
 		</div>
 	</div>

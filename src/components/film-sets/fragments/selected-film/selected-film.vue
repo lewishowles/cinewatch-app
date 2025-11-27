@@ -1,10 +1,10 @@
 <template>
 	<li v-if="haveFilm" class="flex gap-2 items-center" data-test="selected-film">
-		<image-tag v-bind="{ src: posterUrl, alt: `Poster for ${film.title}` }" class="w-7 h-10 rounded" />
+		<image-tag v-bind="{ src: posterUrl, alt: `Poster for ${film.title}` }" class="w-7 h-10 rounded" data-test="selected-film-poster" />
 
 		<div class="flex flex-col">
-			<span class="font-semibold text-grey-950">{{ film.title }}</span>
-			<span class="text-xs text-grey-500">{{ selectedScreeningTypes }}</span>
+			<span class="font-semibold text-grey-950" data-test="selected-film-title">{{ film.title }}</span>
+			<span class="text-xs text-grey-500" data-test="selected-film-screening-types">{{ selectedScreeningTypes }}</span>
 		</div>
 	</li>
 </template>
