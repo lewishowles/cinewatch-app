@@ -177,6 +177,9 @@ export default function useFilmSetCalculator() {
 		});
 	});
 
+	// Whether any film sets could be found.
+	const haveFilmSets = computed(() => isNonEmptyArray(filmSets.value));
+
 	/**
 	 * Determine the wait time between two "times", e.g.
 	 * "start": { "label": "16:50", "value": "2025-10-29T16:50:00.000Z" }
@@ -310,6 +313,7 @@ export default function useFilmSetCalculator() {
 		selectedFilmTimes,
 		filmGraph,
 		filmSets,
+		haveFilmSets,
 		resetFilmSets,
 	};
 }

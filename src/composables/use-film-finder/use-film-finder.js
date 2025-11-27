@@ -73,8 +73,8 @@ export default function useFilmFinder() {
 			// Since we're loading new data, reset any existing data.
 			data.value = null;
 
-			// const response = await get("cineworld/films", { url });
-			const response = await import("@/mock-data/cineworld-films.json").then(m => m.default);
+			const response = await get("cineworld/films", { url });
+			// const response = await import("@/mock-data/cineworld-films.json").then(m => m.default);
 
 			if (!isNonEmptyObject(response)) {
 				throw new Error(`Expected non-empty object <response>, received ${getFriendlyDisplay(response)}`);

@@ -24,6 +24,20 @@
 			</ul>
 		</div>
 
+		<none-found v-if="!haveFilmSets">
+			<template #title>
+				No suggestions found
+			</template>
+
+			We couldn't find any suggestions based on the selected films.
+
+			<template #actions>
+				<ui-button class="button--muted" @click="goToList">
+					Change film selection
+				</ui-button>
+			</template>
+		</none-found>
+
 		<film-set v-for="set in fullFilmSets" :key="set.id" v-bind="{ set }" />
 
 		<template v-if="havePartialFilmSets">
