@@ -1,9 +1,9 @@
 <template>
 	<page-header class="mb-10">
-		Cinewatch
+		Choose your cinema
 
 		<template #introduction>
-			Look up listings from your favourite branch of Cineworld, select the films you want to see, and let Cinewatch work out the most efficient way to watch them.
+			Cinewatch lets you look up listings from your favourite branch of Cineworld, select the films you want to see, and work out the most efficient way to watch them. Start by choosing which branch you want to visit.
 		</template>
 	</page-header>
 
