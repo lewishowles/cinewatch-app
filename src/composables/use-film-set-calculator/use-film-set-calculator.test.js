@@ -66,8 +66,11 @@ describe("use-film-set-calculator", () => {
 	];
 
 	afterEach(() => {
-		const { filmScreeningTypes } = useFilmSetCalculator();
+		const { minimumFilmGapMinutes, earliestStartTime, latestEndTime, filmScreeningTypes } = useFilmSetCalculator();
 
+		minimumFilmGapMinutes.value = 20;
+		earliestStartTime.value = null;
+		latestEndTime.value = null;
 		filmScreeningTypes.value = {};
 	});
 
@@ -261,7 +264,7 @@ describe("use-film-set-calculator", () => {
 				data.value = { films: sampleFilms };
 				filmScreeningTypes.value = {};
 
-				expect(filmGraph.value).toEqual([]);
+				expect(filmGraph.value).toEqual(null);
 			});
 
 			test("Returns an empty array invalid films are selected", () => {
@@ -271,7 +274,237 @@ describe("use-film-set-calculator", () => {
 				data.value = { films: [] };
 				filmScreeningTypes.value = { 1: { 10: true }, 2: { 12: true } };
 
-				expect(filmGraph.value).toEqual([]);
+				expect(filmGraph.value).toEqual(null);
+			});
+
+			// We test this by creating and selecting two films that are only
+			// five minutes apart, with a minimum gap set to the default 20
+			// minutes. For each of the film nodes, there should be no edges,
+			// because there are no paths between one film to the other.
+			test("Excludes edges that do not meet the minimum gap set by the user", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph } = useFilmSetCalculator();
+
+				data.value = {
+					films: [
+						{
+							id: "1",
+							screenings: [
+								{
+									id: "10",
+									label: "2D",
+									times: [
+										{
+											start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
+											end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+						{
+							id: "2",
+							screenings: [
+								{
+									id: "11",
+									label: "IMAX",
+									times: [
+										{
+											start: { label: "12:05", value: "2025-10-29T12:05:00.000Z" },
+											end: { label: "14:05", value: "2025-10-29T14:05:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+					],
+				};
+
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 11: true } };
+
+				const { nodes, edges } = filmGraph.value;
+
+				expect(nodes.length).toBe(2);
+
+				nodes.forEach(node => {
+					const edgesForNode = edges.get(node);
+
+					expect(edgesForNode.length).toBe(0);
+				});
+			});
+
+			// We test this by changing the default minimum film gap to
+			// something that would allow two films that are only five minutes
+			// apart to follow on from each other.
+			test("Acknowledges a custom minimum gap between films", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph, minimumFilmGapMinutes } = useFilmSetCalculator();
+
+				data.value = {
+					films: [
+						{
+							id: "1",
+							screenings: [
+								{
+									id: "10",
+									label: "2D",
+									times: [
+										{
+											start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
+											end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+						{
+							id: "2",
+							screenings: [
+								{
+									id: "11",
+									label: "IMAX",
+									times: [
+										{
+											start: { label: "12:05", value: "2025-10-29T12:05:00.000Z" },
+											end: { label: "14:05", value: "2025-10-29T14:05:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+					],
+				};
+
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 11: true } };
+
+				minimumFilmGapMinutes.value = 3;
+
+				const { nodes, edges } = filmGraph.value;
+
+				expect(nodes.length).toBe(2);
+
+				nodes.forEach(node => {
+					const edgesForNode = edges.get(node);
+
+					if (node.film_id === "1") {
+						expect(edgesForNode.length).toBe(1);
+					} else {
+						expect(edgesForNode.length).toBe(0);
+					}
+				});
+			});
+
+			test("Excludes film screenings that start before a given earliest start time", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph, earliestStartTime } = useFilmSetCalculator();
+
+				earliestStartTime.value = "11:00";
+
+				data.value = {
+					films: [
+						{
+							id: "1",
+							screenings: [
+								{
+									id: "10",
+									label: "2D",
+									times: [
+										{
+											start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
+											end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+						{
+							id: "2",
+							screenings: [
+								{
+									id: "11",
+									label: "IMAX",
+									times: [
+										{
+											start: { label: "12:05", value: "2025-10-29T12:05:00.000Z" },
+											end: { label: "14:05", value: "2025-10-29T14:05:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+					],
+				};
+
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 11: true } };
+
+				const { nodes, edges } = filmGraph.value;
+
+				expect(nodes.length).toBe(1);
+
+				nodes.forEach(node => {
+					const edgesForNode = edges.get(node);
+
+					expect(edgesForNode.length).toBe(0);
+				});
+
+				expect(nodes[0].film_id).toBe("2");
+			});
+
+
+			test("Excludes film screenings that end after a given latest end time", () => {
+				const { data } = useFilmFinder();
+				const { filmScreeningTypes, filmGraph, latestEndTime } = useFilmSetCalculator();
+
+				latestEndTime.value = "14:00";
+
+				data.value = {
+					films: [
+						{
+							id: "1",
+							screenings: [
+								{
+									id: "10",
+									label: "2D",
+									times: [
+										{
+											start: { label: "10:00", value: "2025-10-29T10:00:00.000Z" },
+											end: { label: "12:00", value: "2025-10-29T12:00:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+						{
+							id: "2",
+							screenings: [
+								{
+									id: "11",
+									label: "IMAX",
+									times: [
+										{
+											start: { label: "12:05", value: "2025-10-29T12:05:00.000Z" },
+											end: { label: "14:05", value: "2025-10-29T14:05:00.000Z" },
+										},
+									],
+								},
+							],
+						},
+					],
+				};
+
+				filmScreeningTypes.value = { 1: { 10: true }, 2: { 11: true } };
+
+				const { nodes, edges } = filmGraph.value;
+
+				expect(nodes.length).toBe(1);
+
+				nodes.forEach(node => {
+					const edgesForNode = edges.get(node);
+
+					expect(edgesForNode.length).toBe(0);
+				});
+
+				expect(nodes[0].film_id).toBe("1");
 			});
 		});
 

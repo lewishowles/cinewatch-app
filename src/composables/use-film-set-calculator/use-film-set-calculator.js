@@ -1,16 +1,24 @@
 import { arrayLength, isNonEmptyArray } from "@lewishowles/helpers/array";
 import { computed, ref } from "vue";
+import { firstDefined } from "@lewishowles/helpers/array";
 import { get, isNonEmptyObject, keyBy, pick } from "@lewishowles/helpers/object";
-import { isNumber } from "@lewishowles/helpers/number";
+import { getMillisecondsBetweenDateStrings, isTimeAfterTime, parseTimeStringToDate } from "./helpers";
+import { isNumber, isNumeric } from "@lewishowles/helpers/number";
 import { nanoid } from "nanoid";
+import { validateOrFallback } from "@lewishowles/helpers/general";
 
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 
 const { haveFilms, availableFilms } = useFilmFinder();
 
+// The default gap between films.
+const defaultFilmGapMinutes = 20;
 // Our minimum gap between films, allowing for breaks, trailers, etc.
-const MINIMUM_FILM_GAP_MINUTES = 20;
-
+const minimumFilmGapMinutes = ref(defaultFilmGapMinutes);
+// The earliest start time for our sets.
+const earliestStartTime = ref(null);
+// The latest end time for our sets.
+const latestEndTime = ref(null);
 // The current state of all film screening types, grouped by their associated
 // film.
 const filmScreeningTypes = ref({});
@@ -118,27 +126,58 @@ export default function useFilmSetCalculator() {
 	//   "given a `node`, where can I go from here that is valid?"
 	const filmGraph = computed(() => {
 		if (!isNonEmptyArray(selectedFilmTimes.value)) {
-			return [];
+			return null;
 		}
 
 		// Flatten all selected films into a list of screening nodes
-		const nodes = selectedFilmTimes.value.flatMap(film =>
+		let nodes = selectedFilmTimes.value.flatMap(film =>
 			film.times.map(time => ({ film_id: film.id, ...time })),
 		);
+
+		// We assume all films occur on the same day, so we will use the date of
+		// the first film in our node list as a baseline for our earliest start
+		// and latest end times.
+		const firstNode = firstDefined(nodes);
+		const baseDate = get(firstNode, "start.value");
+		// Parse the user's earliest start time.
+		const earliestStartDate = parseTimeStringToDate(earliestStartTime.value, new Date(baseDate));
+		// Parse the user's latest end time.
+		const latestEndDate = parseTimeStringToDate(latestEndTime.value, new Date(baseDate));
+
+		// Filter our nodes to those that fit within the defined constraints,
+		// that is, earliest start time and latest end time.
+		nodes = nodes.filter(node => {
+			const filmStart = new Date(get(node, "start.value"));
+			const filmEnd = new Date(get(node, "end.value"));
+
+			return (earliestStartDate === null || filmStart >= earliestStartDate) && (latestEndDate === null || filmEnd <= latestEndDate);
+		});
 
 		// Build an adjacency list. For each node, which screenings can follow
 		// it?
 		const edges = new Map();
 
-		nodes.forEach(node => {
-			const nextNodes = nodes.filter(
-				other => other.film_id !== node.film_id && canFilmFollow(node, other),
-			);
+		// Define our film gap.
+		const filmGap = validateOrFallback(minimumFilmGapMinutes.value, isNumeric, defaultFilmGapMinutes);
 
-			edges.set(node, nextNodes.map(next => ({
-				node: next,
-				waitTime: getWaitBetweenTimes(node, next),
-			})));
+		nodes.forEach(node => {
+			const firstTimeString = get(node, "end.value");
+
+			const nextNodes = nodes.filter(otherFilm => {
+				const secondTimeString = get(otherFilm, "start.value");
+
+				return otherFilm.film_id !== node.film_id &&
+					isTimeAfterTime(firstTimeString, secondTimeString, parseInt(filmGap));
+			});
+
+			edges.set(node, nextNodes.map(nextFilm => {
+				const secondTimeString = get(nextFilm, "start.value");
+
+				return {
+					node: nextFilm,
+					waitTime: getMillisecondsBetweenDateStrings(firstTimeString, secondTimeString),
+				};
+			}));
 		});
 
 		return { nodes, edges };
@@ -179,42 +218,6 @@ export default function useFilmSetCalculator() {
 
 	// Whether any film sets could be found.
 	const haveFilmSets = computed(() => isNonEmptyArray(filmSets.value));
-
-	/**
-	 * Determine the wait time between two "times", e.g.
-	 * "start": { "label": "16:50", "value": "2025-10-29T16:50:00.000Z" }
-	 *
-	 * @param  {object}  firstFilmTime
-	 *     The time of the first film screening.
-	 * @param  {object}  secondFilmTime
-	 *     The time of the second film screening.
-	 */
-	function getWaitBetweenTimes(firstFilmTime, secondFilmTime) {
-		const start = new Date(get(secondFilmTime, "start.value"));
-		const end = new Date(get(firstFilmTime, "end.value"));
-
-		if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-			return null;
-		}
-
-		return start.getTime() - end.getTime();
-	}
-
-	/**
-	 * Determine whether a film screening can follow another, by determining
-	 * whether the gap between them exceeds the minimum threshold set by the
-	 * user.
-	 *
-	 * @param  {object}  firstFilmTime
-	 *     The time of the first film screening.
-	 * @param  {object}  secondFilmTime
-	 *     The time of the second film screening.
-	 */
-	function canFilmFollow(firstFilmTime, secondFilmTime) {
-		const gap = getWaitBetweenTimes(firstFilmTime, secondFilmTime);
-
-		return gap >= MINIMUM_FILM_GAP_MINUTES * 60 * 1000;
-	}
 
 	/**
 	 * A depth‑first search to explore all possible paths through the graph.
@@ -306,14 +309,17 @@ export default function useFilmSetCalculator() {
 	}
 
 	return {
-		selectedFilmScreeningTypes,
-		filmScreeningTypes,
-		selectedFilmsCount,
-		selectedFilms,
-		selectedFilmTimes,
+		earliestStartTime,
 		filmGraph,
+		filmScreeningTypes,
 		filmSets,
 		haveFilmSets,
+		latestEndTime,
+		minimumFilmGapMinutes,
 		resetFilmSets,
+		selectedFilmScreeningTypes,
+		selectedFilmTimes,
+		selectedFilms,
+		selectedFilmsCount,
 	};
 }

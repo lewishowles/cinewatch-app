@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col gap-10">
+	<div class="flex flex-col gap-10" data-test="film-sets">
 		<page-header>
 			Best combinations
 
@@ -10,18 +10,22 @@
 			</template>
 		</page-header>
 
-		<div class="bg-grey-50 border border-grey-300 p-4 rounded-md text-sm" data-test="film-sets">
-			<div class="flex justify-between items-center mb-2">
-				You selected {{ selectedFilmsCount }} films:
+		<div class="flex flex-col gap-4">
+			<div class="bg-grey-50 border border-grey-300 px-6 py-4 rounded-md text-sm" data-test="film-sets-selected-films">
+				<div class="flex justify-between items-center mb-2">
+					You selected {{ selectedFilmsCount }} films:
 
-				<ui-button class="button--muted" @click="goToList">
-					Change selection
-				</ui-button>
+					<ui-button class="button--muted" @click="goToList">
+						Change selection
+					</ui-button>
+				</div>
+
+				<ul class="flex flex-col gap-4">
+					<selected-film v-for="film in selectedFilms" :key="film.id" v-bind="{ film }" />
+				</ul>
 			</div>
 
-			<ul class="flex flex-col gap-4">
-				<selected-film v-for="film in selectedFilms" :key="film.id" v-bind="{ film }" />
-			</ul>
+			<watch-settings />
 		</div>
 
 		<none-found v-if="!haveFilmSets">
@@ -61,6 +65,7 @@ import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
 import FilmSet from "./fragments/film-set/film-set.vue";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 import SelectedFilm from "./fragments/selected-film/selected-film.vue";
+import WatchSettings from "./fragments/watch-settings/watch-settings.vue";
 
 const { selectedFilms, selectedFilmsCount, filmSets, haveFilmSets } = useFilmSetCalculator();
 const { goToSearch, goToList } = useStageManager();
@@ -78,8 +83,7 @@ const fullFilmSets = computed(() => {
 	});
 });
 
-// Film sets that contain some of the selected films, but more than one, as a
-// set with a single film isn't providing anything new.
+// Film sets that contain some of the selected films.
 const partialFilmSets = computed(() => {
 	if (!isNonEmptyArray(filmSets.value)) {
 		return [];
@@ -88,7 +92,7 @@ const partialFilmSets = computed(() => {
 	return filmSets.value.filter(filmSet => {
 		const filmsSeen = get(filmSet, "films_seen");
 
-		return filmsSeen < selectedFilmsCount.value && filmsSeen > 1;
+		return filmsSeen < selectedFilmsCount.value && filmsSeen >= 1;
 	});
 });
 

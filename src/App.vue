@@ -8,6 +8,8 @@
 		<film-list v-else-if="isList" />
 		<film-sets v-else-if="isSets" />
 	</main>
+
+	<modal-controller />
 </template>
 
 <script setup>

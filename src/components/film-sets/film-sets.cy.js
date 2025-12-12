@@ -73,6 +73,7 @@ describe("film-sets", () => {
 
 		cy.getByData("page-header").shouldBeVisible();
 		cy.getByData("film-sets").shouldBeVisible();
+		cy.getByData("film-sets-selected-films").shouldBeVisible();
 		cy.getByData("selected-film").shouldHaveCount(3);
 		cy.getByData("film-set").shouldHaveCount(2);
 		cy.getByData("partial-film-set").shouldHaveCount(4);
