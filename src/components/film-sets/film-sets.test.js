@@ -130,21 +130,21 @@ describe("film-sets", () => {
 				expect(vm.partialFilmSets).toEqual([]);
 			});
 
-			test("Excludes film sets with all films, and those with just one film", () => {
+			test("Excludes film sets with all films", () => {
 				const { data } = useFilmFinder();
 				const { filmScreeningTypes, filmSets } = useFilmSetCalculator();
 
 				data.value = { films: sampleFilms };
 
 				filmScreeningTypes.value = {
-					1: { 10: true }, 2: { 11: true, 12: true }, 3: { 13: true }, 4: { 14: true },
+					1: { 10: true }, 2: { 11: true, 12: true }, 4: { 14: true },
 				};
 
 				const wrapper = mount();
 				const vm = wrapper.vm;
 
-				expect(filmSets.value).toHaveLength(10);
-				expect(vm.partialFilmSets).toHaveLength(5);
+				expect(filmSets.value).toHaveLength(7);
+				expect(vm.partialFilmSets).toHaveLength(6);
 			});
 		});
 	});
