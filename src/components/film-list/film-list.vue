@@ -24,7 +24,7 @@
 					{{ branch.name }}
 
 					<template #introduction>
-						{{ branch.description }}
+						<blockquote>{{ branch.description }}</blockquote>
 					</template>
 
 					<template #actions>
@@ -34,7 +34,9 @@
 					</template>
 				</page-header>
 
-				<p>When selecting films to watch, you select individual types of screening, rather than films as a whole. This lets you prioritise, or disallow, IMAX, for example. To continue, select two or more films.</p>
+				<ui-button class="button--muted text-sm self-start" @click="openModal(FilmListHelpDialog)">
+					Get help
+				</ui-button>
 			</div>
 
 			<div class="flex flex-col gap-4 mb-20" data-test="film-list-list">
@@ -73,10 +75,13 @@
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 import useFilmSetCalculator from "@/composables/use-film-set-calculator/use-film-set-calculator";
 import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
+import { useModalDialog } from "@lewishowles/components";
 
 import AvailableFilm from "@/components/available-film/available-film.vue";
+import FilmListHelpDialog from "./dialogs/film-list-help-dialog/film-list-help-dialog.vue";
 import PageHeader from "@/components/layout/page-header/page-header.vue";
 
+const { openModal } = useModalDialog();
 // The branch and film details retrieved by our film finder.
 const { isLoading, branch, haveBranch, haveFilms, totalFilmsCount, availableFilms, availableFilmsCount } = useFilmFinder();
 // Allow the user to go back and pick another branch.

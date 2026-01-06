@@ -1,0 +1,1402 @@
+{
+	"branch": {
+		"name": "Ashton-under-Lyne",
+		"description": "Cineworld Ashton is a great 14 screen cinema, with local transport links, Starbucks and a wide range of restaurants nearby.",
+		"dates": [
+			{
+				"day": "Today",
+				"date": "2025-10-29"
+			},
+			{
+				"day": "Thu",
+				"date": "2025-10-30"
+			},
+			{
+				"day": "Fri",
+				"date": "2025-10-31"
+			},
+			{
+				"day": "Sat",
+				"date": "2025-11-01"
+			},
+			{
+				"day": "Sun",
+				"date": "2025-11-02"
+			},
+			{
+				"day": "Mon",
+				"date": "2025-11-03"
+			},
+			{
+				"day": "Tue",
+				"date": "2025-11-04"
+			}
+		],
+		"url": "https://www.cineworld.co.uk/cinemas/ashton-under-lyne/068"
+	},
+	"films": [
+		{
+			"title": "Chainsaw Man - The Movie: Reze Arc (Dubbed)",
+			"id": "44IJsO0aFQ53fe_0HVWUC",
+			"url": "https://www.cineworld.co.uk/films/chainsaw-man-the-movie-reze-arc-dubbed/ho00013617#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013617&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/ChainsawManTheMovieRezeArcDubbed/HO00013617/TV_SmallPosterImage/20250915-061112032.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action, Animation",
+			"duration_minutes": 101,
+			"screenings": [
+				{
+					"id": "HlMexH4ijYI2KSHuHq4Oj",
+					"label": "4DX 3D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "16:50",
+								"value": "2025-10-29T16:50:00.000Z"
+							},
+							"end": {
+								"label": "18:31",
+								"value": "2025-10-29T18:31:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280340&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Chainsaw Man - The Movie: Reze Arc (Subtitled)",
+			"id": "K_-5WItNavtRN0QH_bzp5",
+			"url": "https://www.cineworld.co.uk/films/chainsaw-man-the-movie-reze-arc-subtitled/ho00013624#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013624&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/ChainsawManTheMovieRezeArcSubtitled/HO00013624/TV_SmallPosterImage/20250915-061420139.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action, Animation",
+			"duration_minutes": 101,
+			"screenings": [
+				{
+					"id": "lWgQYpTfoK2Kts0NacHI8",
+					"label": "IMAX 2D",
+					"subtitled": true,
+					"times": [
+						{
+							"start": {
+								"label": "13:40",
+								"value": "2025-10-29T13:40:00.000Z"
+							},
+							"end": {
+								"label": "15:21",
+								"value": "2025-10-29T15:21:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280405&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Black Phone 2",
+			"id": "vXrkaTUeIDx1wqDZscrXu",
+			"url": "https://www.cineworld.co.uk/films/black-phone-2/ho00013444#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013444&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/TheBlackPhone2/HO00013444/TV_SmallPosterImage/20250901-084052179.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/18.png",
+				"alt": "No-one younger than 18 may see an '18' film in a cinema."
+			},
+			"genre": "Horror",
+			"duration_minutes": 114,
+			"screenings": [
+				{
+					"id": "6iwjbp0am2vU3Eso_ec_A",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "15:00",
+								"value": "2025-10-29T15:00:00.000Z"
+							},
+							"end": {
+								"label": "16:54",
+								"value": "2025-10-29T16:54:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280539&lang=en"
+						},
+						{
+							"start": {
+								"label": "17:40",
+								"value": "2025-10-29T17:40:00.000Z"
+							},
+							"end": {
+								"label": "19:34",
+								"value": "2025-10-29T19:34:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280540&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:20",
+								"value": "2025-10-29T20:20:00.000Z"
+							},
+							"end": {
+								"label": "22:14",
+								"value": "2025-10-29T22:14:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280541&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Sketch (2025)",
+			"id": "1r7BXv4aEpabCT40jGdgT",
+			"url": "https://www.cineworld.co.uk/films/sketch-2025/ho00013705#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013705&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/Sketch2025/HO00013705/TV_SmallPosterImage/20251016-102118658.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Comedy, Horror",
+			"duration_minutes": 94,
+			"screenings": [
+				{
+					"id": "poUEsog4M9nsAPueJEu16",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "14:40",
+								"value": "2025-10-29T14:40:00.000Z"
+							},
+							"end": {
+								"label": "16:14",
+								"value": "2025-10-29T16:14:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280441&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Shelby Oaks",
+			"id": "bNS24_r_A0UVwCP76yQzz",
+			"url": "https://www.cineworld.co.uk/films/shelby-oaks/ho00013697#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013697&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/ShelbyOaks/HO00013697/TV_SmallPosterImage/20251020-062402646.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Horror",
+			"duration_minutes": 91,
+			"screenings": [
+				{
+					"id": "2uMViF58RxA5C24gjkc2a",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "15:50",
+								"value": "2025-10-29T15:50:00.000Z"
+							},
+							"end": {
+								"label": "17:21",
+								"value": "2025-10-29T17:21:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280468&lang=en"
+						},
+						{
+							"start": {
+								"label": "18:20",
+								"value": "2025-10-29T18:20:00.000Z"
+							},
+							"end": {
+								"label": "19:51",
+								"value": "2025-10-29T19:51:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280469&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:50",
+								"value": "2025-10-29T20:50:00.000Z"
+							},
+							"end": {
+								"label": "22:21",
+								"value": "2025-10-29T22:21:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280254&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Regretting You",
+			"id": "7uw2lv_U1NGl3ebGQAEiG",
+			"url": "https://www.cineworld.co.uk/films/regretting-you/ho00013662#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013662&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/RegrettingYou/HO00013662/TV_LargePosterImage/20251028-132135395.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Drama",
+			"duration_minutes": 116,
+			"screenings": [
+				{
+					"id": "8Av6uYarFBvrHgQNR-4wH",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "13:30",
+								"value": "2025-10-29T13:30:00.000Z"
+							},
+							"end": {
+								"label": "15:26",
+								"value": "2025-10-29T15:26:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280598&lang=en"
+						},
+						{
+							"start": {
+								"label": "14:50",
+								"value": "2025-10-29T14:50:00.000Z"
+							},
+							"end": {
+								"label": "16:46",
+								"value": "2025-10-29T16:46:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280522&lang=en"
+						},
+						{
+							"start": {
+								"label": "16:20",
+								"value": "2025-10-29T16:20:00.000Z"
+							},
+							"end": {
+								"label": "18:16",
+								"value": "2025-10-29T18:16:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280599&lang=en"
+						},
+						{
+							"start": {
+								"label": "17:40",
+								"value": "2025-10-29T17:40:00.000Z"
+							},
+							"end": {
+								"label": "19:36",
+								"value": "2025-10-29T19:36:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280523&lang=en"
+						},
+						{
+							"start": {
+								"label": "19:10",
+								"value": "2025-10-29T19:10:00.000Z"
+							},
+							"end": {
+								"label": "21:06",
+								"value": "2025-10-29T21:06:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280600&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:30",
+								"value": "2025-10-29T20:30:00.000Z"
+							},
+							"end": {
+								"label": "22:26",
+								"value": "2025-10-29T22:26:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280524&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Springsteen: Deliver Me from Nowhere",
+			"id": "vbIaxRcXjGV7GfDuakmJy",
+			"url": "https://www.cineworld.co.uk/films/springsteen-deliver-me-from-nowhere/ho00013690#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013690&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/SpringsteenDeliverMeFromNowhere/HO00013690/TV_SmallPosterImage/20250930-055928611.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Drama",
+			"duration_minutes": 119,
+			"screenings": [
+				{
+					"id": "ZwIMHyoNirEPTlCI9CUnU",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "14:50",
+								"value": "2025-10-29T14:50:00.000Z"
+							},
+							"end": {
+								"label": "16:49",
+								"value": "2025-10-29T16:49:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279043&lang=en"
+						},
+						{
+							"start": {
+								"label": "15:40",
+								"value": "2025-10-29T15:40:00.000Z"
+							},
+							"end": {
+								"label": "17:39",
+								"value": "2025-10-29T17:39:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279039&lang=en"
+						},
+						{
+							"start": {
+								"label": "17:40",
+								"value": "2025-10-29T17:40:00.000Z"
+							},
+							"end": {
+								"label": "19:39",
+								"value": "2025-10-29T19:39:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279042&lang=en"
+						},
+						{
+							"start": {
+								"label": "18:30",
+								"value": "2025-10-29T18:30:00.000Z"
+							},
+							"end": {
+								"label": "20:29",
+								"value": "2025-10-29T20:29:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279038&lang=en"
+						},
+						{
+							"start": {
+								"label": "19:30",
+								"value": "2025-10-29T19:30:00.000Z"
+							},
+							"end": {
+								"label": "21:29",
+								"value": "2025-10-29T21:29:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279044&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:30",
+								"value": "2025-10-29T20:30:00.000Z"
+							},
+							"end": {
+								"label": "22:29",
+								"value": "2025-10-29T22:29:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279041&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Gabby’s Dollhouse: The Movie",
+			"id": "pmbgiOm_E-l6y9fO_zOlL",
+			"url": "https://www.cineworld.co.uk/films/gabbys-dollhouse-the-movie/ho00013445#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013445&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/GabbysDollhouseTheMovie/HO00013445/TV_SmallPosterImage/20250903-112447652.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/U.png",
+				"alt": "It is impossible to predict what might upset any particular child. But a 'U' film should be suitable for audiences aged four years and over. 'U' films should be set within a positive moral framework and should offer reassuring counterbalances to any violence, threat or horror."
+			},
+			"genre": "Animation",
+			"duration_minutes": 98,
+			"screenings": [
+				{
+					"id": "Kb5af9gep3CjGO49rspYh",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "13:00",
+								"value": "2025-10-29T13:00:00.000Z"
+							},
+							"end": {
+								"label": "14:38",
+								"value": "2025-10-29T14:38:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280491&lang=en"
+						},
+						{
+							"start": {
+								"label": "13:50",
+								"value": "2025-10-29T13:50:00.000Z"
+							},
+							"end": {
+								"label": "15:28",
+								"value": "2025-10-29T15:28:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280569&lang=en"
+						},
+						{
+							"start": {
+								"label": "14:30",
+								"value": "2025-10-29T14:30:00.000Z"
+							},
+							"end": {
+								"label": "16:08",
+								"value": "2025-10-29T16:08:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280395&lang=en"
+						},
+						{
+							"start": {
+								"label": "15:30",
+								"value": "2025-10-29T15:30:00.000Z"
+							},
+							"end": {
+								"label": "17:08",
+								"value": "2025-10-29T17:08:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280492&lang=en"
+						},
+						{
+							"start": {
+								"label": "17:00",
+								"value": "2025-10-29T17:00:00.000Z"
+							},
+							"end": {
+								"label": "18:38",
+								"value": "2025-10-29T18:38:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280396&lang=en"
+						},
+						{
+							"start": {
+								"label": "18:10",
+								"value": "2025-10-29T18:10:00.000Z"
+							},
+							"end": {
+								"label": "19:48",
+								"value": "2025-10-29T19:48:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280493&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "I Swear",
+			"id": "4H4lZcw3QC82wG7S9Vgs7",
+			"url": "https://www.cineworld.co.uk/films/i-swear/ho00013591#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013591&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/ISwear/HO00013591/TV_SmallPosterImage/20251006-100439770.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Comedy, Drama",
+			"duration_minutes": 120,
+			"screenings": [
+				{
+					"id": "8QS2flwjxC6nqbfLD4mk9",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "17:00",
+								"value": "2025-10-29T17:00:00.000Z"
+							},
+							"end": {
+								"label": "19:00",
+								"value": "2025-10-29T19:00:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280293&lang=en"
+						},
+						{
+							"start": {
+								"label": "19:50",
+								"value": "2025-10-29T19:50:00.000Z"
+							},
+							"end": {
+								"label": "21:50",
+								"value": "2025-10-29T21:50:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280294&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Tron: Ares",
+			"id": "Ckef-h0bdoSuQ6SQHpFXA",
+			"url": "https://www.cineworld.co.uk/films/tron-ares/ho00013436#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013436&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/TronAres/HO00013436/TV_SmallPosterImage/20251006-100039583.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 119,
+			"screenings": [
+				{
+					"id": "8NhRiWwG3OFhBTkUtlFLN",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "14:00",
+								"value": "2025-10-29T14:00:00.000Z"
+							},
+							"end": {
+								"label": "15:59",
+								"value": "2025-10-29T15:59:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280304&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:40",
+								"value": "2025-10-29T20:40:00.000Z"
+							},
+							"end": {
+								"label": "22:39",
+								"value": "2025-10-29T22:39:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280503&lang=en"
+						}
+					]
+				},
+				{
+					"id": "s6FRKS_WWzY1ViSxZrhQ_",
+					"label": "IMAX 2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "16:10",
+								"value": "2025-10-29T16:10:00.000Z"
+							},
+							"end": {
+								"label": "18:09",
+								"value": "2025-10-29T18:09:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280419&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Horror Season: Corpse Bride (20th Anniversary)",
+			"id": "jtevaOo315JZ_1eE5bbtK",
+			"url": "https://www.cineworld.co.uk/films/horror-season-corpse-bride-20th-anniversary/ho00013599#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013599&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/HorrorSeasonCorpseBride20thAnniversary/HO00013599/TV_SmallPosterImage/20250908-114736335.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/PG.png",
+				"alt": "Unaccompanied children of any age may watch. A 'PG' film should not disturb a child aged around eight or older. However, parents are advised to consider whether the content may upset younger or more sensitive children."
+			},
+			"genre": "Animation, Horror",
+			"duration_minutes": 77,
+			"screenings": [
+				{
+					"id": "Coi6I2PBTOUROZN6u6uiA",
+					"label": "4DX 2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "14:40",
+								"value": "2025-10-29T14:40:00.000Z"
+							},
+							"end": {
+								"label": "15:57",
+								"value": "2025-10-29T15:57:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280364&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Roofman",
+			"id": "t05fK4O8P0wT5scxmXAez",
+			"url": "https://www.cineworld.co.uk/films/roofman/ho00013611#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013611&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/Roofman/HO00013611/TV_SmallPosterImage/20251020-070820945.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Comedy",
+			"duration_minutes": 126,
+			"screenings": [
+				{
+					"id": "nHAnU0KSoeJQ3vVx0Up3b",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "17:10",
+								"value": "2025-10-29T17:10:00.000Z"
+							},
+							"end": {
+								"label": "19:16",
+								"value": "2025-10-29T19:16:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280333&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:10",
+								"value": "2025-10-29T20:10:00.000Z"
+							},
+							"end": {
+								"label": "22:16",
+								"value": "2025-10-29T22:16:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280334&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Pets On A Train",
+			"id": "Myg3bX1mOchw80m84n6RT",
+			"url": "https://www.cineworld.co.uk/films/pets-on-a-train/ho00013687#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013687&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PetsOnATrain/HO00013687/TV_SmallPosterImage/20251007-111718375.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/PG.png",
+				"alt": "Unaccompanied children of any age may watch. A 'PG' film should not disturb a child aged around eight or older. However, parents are advised to consider whether the content may upset younger or more sensitive children."
+			},
+			"genre": "Action, Animation",
+			"duration_minutes": 87,
+			"screenings": [
+				{
+					"id": "QX8kamPk6Ts0dGAeF4CzO",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "15:00",
+								"value": "2025-10-29T15:00:00.000Z"
+							},
+							"end": {
+								"label": "16:27",
+								"value": "2025-10-29T16:27:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280318&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "One Battle After Another",
+			"id": "qxhxGdntSCi_Y2sZvoB_q",
+			"url": "https://www.cineworld.co.uk/films/one-battle-after-another/ho00013432#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013432&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/OneBattleAfterAnother/HO00013432/TV_SmallPosterImage/20250915-061832720.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action",
+			"duration_minutes": 162,
+			"screenings": [
+				{
+					"id": "fBh_h13MvMn6o3w76pWLJ",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "16:30",
+								"value": "2025-10-29T16:30:00.000Z"
+							},
+							"end": {
+								"label": "19:12",
+								"value": "2025-10-29T19:12:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280579&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Good Fortune",
+			"id": "rVdOUSfgBK_URQV1uG3Kb",
+			"url": "https://www.cineworld.co.uk/films/good-fortune/ho00013694#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013694&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/GoodFortune/HO00013694/TV_SmallPosterImage/20251020-071102323.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Comedy, Drama",
+			"duration_minutes": 98,
+			"screenings": [
+				{
+					"id": "y1qsTHy_o8b9g87b97644",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "17:00",
+								"value": "2025-10-29T17:00:00.000Z"
+							},
+							"end": {
+								"label": "18:38",
+								"value": "2025-10-29T18:38:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280663&lang=en"
+						},
+						{
+							"start": {
+								"label": "20:00",
+								"value": "2025-10-29T20:00:00.000Z"
+							},
+							"end": {
+								"label": "21:38",
+								"value": "2025-10-29T21:38:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280573&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Baahubali: The Epic (Telugu)",
+			"id": "6x_P5vrdJpB1mkaowis94",
+			"url": "https://www.cineworld.co.uk/films/baahubali-the-epic-telugu/ho00013824#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013824&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/BaahubaliTheEpicTelugu/HO00013824/TV_SmallPosterImage/20251016-104034694.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action, Drama",
+			"duration_minutes": 224,
+			"screenings": [
+				{
+					"id": "cDzRh3eMjc5z026cHtyQo",
+					"label": "IMAX 2D",
+					"subtitled": true,
+					"times": [
+						{
+							"start": {
+								"label": "19:00",
+								"value": "2025-10-29T19:00:00.000Z"
+							},
+							"end": {
+								"label": "22:44",
+								"value": "2025-10-29T22:44:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=280200&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "G-DRAGON IN CINEMA [Übermensch]",
+			"id": "5M7MhosM4BSmjYIyq2sVO",
+			"url": "https://www.cineworld.co.uk/films/g-dragon-in-cinema-ubermensch/ho00013691#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013691&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/GDRAGONINCINEMAbermensch/HO00013691/TV_SmallPosterImage/20251001-054837555.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "",
+			"duration_minutes": 106,
+			"screenings": [
+				{
+					"id": "IISUMrhSWHMgvLMKI5v-B",
+					"label": "4DX 2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "19:30",
+								"value": "2025-10-29T19:30:00.000Z"
+							},
+							"end": {
+								"label": "21:16",
+								"value": "2025-10-29T21:16:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=279361&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Horror Season: A Nightmare On Elm Street 2 (40th)",
+			"id": "8IDurPJB1uxhVj1Y15nTX",
+			"url": "https://www.cineworld.co.uk/films/horror-season-a-nightmare-on-elm-street-2-40th/ho00013603#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013603&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/HorrorSeasonANightmareOnElmStreet240th/HO00013603/TV_SmallPosterImage/20250909-114100543.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/18.png",
+				"alt": "No-one younger than 18 may see an '18' film in a cinema."
+			},
+			"genre": "Horror",
+			"duration_minutes": 82,
+			"screenings": [
+				{
+					"id": "UMulJMcSyxUv7HwtWKLvB",
+					"label": "2D",
+					"subtitled": false,
+					"times": [
+						{
+							"start": {
+								"label": "19:35",
+								"value": "2025-10-29T19:35:00.000Z"
+							},
+							"end": {
+								"label": "20:57",
+								"value": "2025-10-29T20:57:00.000Z"
+							},
+							"booking_url": "https://experience.cineworld.co.uk/select-tickets?sitecode=068&site=068&id=278132&lang=en"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Horror Season: Classic Secret Screaming",
+			"id": "Ei7QZrrnUkPPXIJYNbnzM",
+			"url": "https://www.cineworld.co.uk/films/horror-season-classic-secret-screaming/ho00013604#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013604&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/HorrorSeasonClassicSecretScreaming/HO00013604/TV_SmallPosterImage/20250910-044419969.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/18.png",
+				"alt": "No-one younger than 18 may see an '18' film in a cinema."
+			},
+			"genre": "Horror",
+			"duration_minutes": 90,
+			"screenings": []
+		},
+		{
+			"title": "Back To The Future (40th Anniversary Re-Issue)",
+			"id": "5Idba-CoGL62Sr3bnFTTC",
+			"url": "https://www.cineworld.co.uk/films/back-to-the-future-40th-anniversary-re-issue/ho00013665#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013665&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/BackToTheFuture40thAnniversaryReIssue/HO00013665/TV_SmallPosterImage/20250922-070516865.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "",
+			"duration_minutes": 116,
+			"screenings": []
+		},
+		{
+			"title": "Bugonia",
+			"id": "BSPzIU-oQaI0xFlm6WYkS",
+			"url": "https://www.cineworld.co.uk/films/bugonia/ho00013695#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013695&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/Bugonia/HO00013695/TV_SmallPosterImage/20251020-062107332.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Comedy",
+			"duration_minutes": 116,
+			"screenings": []
+		},
+		{
+			"title": "KPop Demon Hunters A Sing-Along Event",
+			"id": "oCYxBTxWY-eVweA_zfTdy",
+			"url": "https://www.cineworld.co.uk/films/kpop-demon-hunters-a-sing-along-event/ho00013786#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013786&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/KPopDemonHuntersASingAlongEvent/HO00013786/TV_SmallPosterImage/20251017-112159027.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/PG.png",
+				"alt": "Unaccompanied children of any age may watch. A 'PG' film should not disturb a child aged around eight or older. However, parents are advised to consider whether the content may upset younger or more sensitive children."
+			},
+			"genre": "Animation",
+			"duration_minutes": 100,
+			"screenings": []
+		},
+		{
+			"title": "Relay",
+			"id": "JJRRUDOIePrA1HDbLKgtY",
+			"url": "https://www.cineworld.co.uk/films/relay/ho00013827#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013827&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/Relay/HO00013827/TV_SmallPosterImage/20251028-130555495.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Drama",
+			"duration_minutes": 111,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Mission: Impossible (1996)",
+			"id": "q6E3EuIVZv0QZbdhnFRLk",
+			"url": "https://www.cineworld.co.uk/films/mi-season-mission-impossible-1996/ho00013673#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013673&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonMissionImpossible1996/HO00013673/TV_SmallPosterImage/20250925-053736917.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/PG.png",
+				"alt": "Unaccompanied children of any age may watch. A 'PG' film should not disturb a child aged around eight or older. However, parents are advised to consider whether the content may upset younger or more sensitive children."
+			},
+			"genre": "Action",
+			"duration_minutes": 110,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Mission: Impossible 2 (2000)",
+			"id": "LFR8J0JjckcBhoZoWoCn4",
+			"url": "https://www.cineworld.co.uk/films/mi-season-mission-impossible-2-2000/ho00013674#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013674&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonMissionImpossible22000/HO00013674/TV_SmallPosterImage/20250925-054717896.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action",
+			"duration_minutes": 124,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Mission: Impossible III (2006)",
+			"id": "pZUGB59P4zdnCHWus4GeU",
+			"url": "https://www.cineworld.co.uk/films/mi-season-mission-impossible-iii-2006/ho00013675#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013675&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonMissionImpossibleIII2006/HO00013675/TV_SmallPosterImage/20250925-055352871.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 125,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Ghost Protocol (2011)",
+			"id": "kPLbuKgbLsD1dwLZsrA6Q",
+			"url": "https://www.cineworld.co.uk/films/mi-season-ghost-protocol-2011/ho00013676#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013676&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonGhostProtocol2011/HO00013676/TV_SmallPosterImage/20250925-055921625.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 134,
+			"screenings": []
+		},
+		{
+			"title": "Predator: Badlands",
+			"id": "QlVIGcePAG5kHTtC9Pc0I",
+			"url": "https://www.cineworld.co.uk/films/predator-badlands/ho00013453#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013453&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PredatorBadlands/HO00013453/TV_SmallPosterImage/20251020-060113915.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 107,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Rogue Nation (2015)",
+			"id": "U9F1nKZzHrlVsA_Pr8SRb",
+			"url": "https://www.cineworld.co.uk/films/mi-season-rogue-nation-2015/ho00013677#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013677&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonRogueNation2015/HO00013677/TV_SmallPosterImage/20250925-060848876.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 132,
+			"screenings": []
+		},
+		{
+			"title": "The Choral",
+			"id": "RCX5Q77DmwaO4cL_QXd9R",
+			"url": "https://www.cineworld.co.uk/films/the-choral/ho00013696#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013696&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/TheChoral/HO00013696/TV_SmallPosterImage/20251022-050056379.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Drama",
+			"duration_minutes": 113,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Fallout (2018)",
+			"id": "9MIuefV70RFeC5fKIywLO",
+			"url": "https://www.cineworld.co.uk/films/mi-season-fallout-2018/ho00013678#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013678&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonFallout2018/HO00013678/TV_SmallPosterImage/20250925-061747567.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 148,
+			"screenings": []
+		},
+		{
+			"title": "Laimingos Zvaigzdes (Lithuanian)",
+			"id": "VkzJzUKQCOHf2jsEGCoYE",
+			"url": "https://www.cineworld.co.uk/films/laimingos-zvaigzdes-lithuanian/ho00013716#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013716&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/LaimingosZvaigzdesLithuanian/HO00013716/TV_SmallPosterImage/20251002-062354174.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/TBC.png",
+				"alt": "To be confirmed - in some instances films have not yet been certified."
+			},
+			"genre": "Comedy",
+			"duration_minutes": 105,
+			"screenings": []
+		},
+		{
+			"title": "Secret Screening 17",
+			"id": "81MLUHhvgfwhuy9c2gpne",
+			"url": "https://www.cineworld.co.uk/films/secret-screening-17/ho00013841#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013841&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/SecretScreening17/HO00013841/TV_SmallPosterImage/20251016-104231343.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/TBC.png",
+				"alt": "To be confirmed - in some instances films have not yet been certified."
+			},
+			"genre": "",
+			"duration_minutes": 90,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - Dead Reckoning (2023)",
+			"id": "BARAWKavnM0Y_BoIN-T4R",
+			"url": "https://www.cineworld.co.uk/films/mi-season-dead-reckoning-2023/ho00013679#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013679&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonDeadReckoning2023/HO00013679/TV_SmallPosterImage/20250925-062650860.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 163,
+			"screenings": []
+		},
+		{
+			"title": "M:I Season - The Final Reckoning (2025)",
+			"id": "VN_5Cbj8l0wnlM__jkxqe",
+			"url": "https://www.cineworld.co.uk/films/mi-season-the-final-reckoning-2025/ho00013680#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013680&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/MISeasonTheFinalReckoning2025/HO00013680/TV_SmallPosterImage/20250925-063251232.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 170,
+			"screenings": []
+		},
+		{
+			"title": "Nuremberg Unlimited Screening",
+			"id": "ZcdmBpDU-F5XNIqiLFNxR",
+			"url": "https://www.cineworld.co.uk/films/nuremberg-unlimited-screening/ho00013814#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013814&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/NurembergUnlimitedScreening/HO00013814/TV_SmallPosterImage/20251028-073225824.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/TBC.png",
+				"alt": "To be confirmed - in some instances films have not yet been certified."
+			},
+			"genre": "Drama",
+			"duration_minutes": 148,
+			"screenings": []
+		},
+		{
+			"title": "The Running Man (2025)",
+			"id": "K4fD8gRv9372pFVU3RLI4",
+			"url": "https://www.cineworld.co.uk/films/the-running-man-2025/ho00013451#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013451&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/TheRunningMan2025/HO00013451/TV_LargePosterImage/20251028-131629586.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/TBC.png",
+				"alt": "To be confirmed - in some instances films have not yet been certified."
+			},
+			"genre": "Action",
+			"duration_minutes": 133,
+			"screenings": []
+		},
+		{
+			"title": "Dogma Resurrected! 25th Anniversary + Recorded Q&A",
+			"id": "duJxlLN-BNobCCRO6RARU",
+			"url": "https://www.cineworld.co.uk/films/dogma-resurrected-25th-anniversary-recorded-qa/ho00013840#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013840&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/DogmaResurrected25thAnniversaryRecordedQA/HO00013840/TV_SmallPosterImage/20251021-053342118.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action, Comedy",
+			"duration_minutes": 154,
+			"screenings": []
+		},
+		{
+			"title": "Now You See Me: Now You Don’t",
+			"id": "MuRSO8N9xke7bgP44JPEJ",
+			"url": "https://www.cineworld.co.uk/films/now-you-see-me-now-you-dont/ho00013457#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013457&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/NowYouSeeMeNowYouDont/HO00013457/TV_SmallPosterImage/20251020-063947182.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "",
+			"duration_minutes": 112,
+			"screenings": []
+		},
+		{
+			"title": "Pirates Season : Curse Of The Black Pearl (2003)",
+			"id": "TdplYG8hqhrD6I9P6JqSM",
+			"url": "https://www.cineworld.co.uk/films/pirates-season-curse-of-the-black-pearl-2003/ho00013787#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013787&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PiratesSeasonCurseOfTheBlackPearl2003/HO00013787/TV_SmallPosterImage/20251014-062743119.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 143,
+			"screenings": []
+		},
+		{
+			"title": "Keeper (2025)",
+			"id": "-ub87k-n80qGD7UjaD0OD",
+			"url": "https://www.cineworld.co.uk/films/keeper-2025/ho00013829#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013829&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/Keeper2025/HO00013829/TV_SmallPosterImage/20251022-114620961.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Horror",
+			"duration_minutes": 99,
+			"screenings": []
+		},
+		{
+			"title": "Pirates Season : Dead Man's Chest (2006)",
+			"id": "KmpW85BWjFfIQLg_rqu1O",
+			"url": "https://www.cineworld.co.uk/films/pirates-season-dead-mans-chest-2006/ho00013788#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013788&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PiratesSeasonDeadMansChest2006/HO00013788/TV_SmallPosterImage/20251014-063203379.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 150,
+			"screenings": []
+		},
+		{
+			"title": "Pirates Season : At World's End (2007)",
+			"id": "bNY0V3xAX31mXrzUWHpIA",
+			"url": "https://www.cineworld.co.uk/films/pirates-season-at-worlds-end-2007/ho00013789#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013789&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PiratesSeasonAtWorldsEnd2007/HO00013789/TV_SmallPosterImage/20251014-062436302.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 168,
+			"screenings": []
+		},
+		{
+			"title": "The Wild Geese (4K Re-Release)",
+			"id": "HqvLHvEUu3D86LR_88rcw",
+			"url": "https://www.cineworld.co.uk/films/the-wild-geese-4k-re-release/ho00013874#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013874&view-mode=list",
+			"poster": {
+				"url": "/xmedia/img/10108/film.placeholder.poster.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action",
+			"duration_minutes": 135,
+			"screenings": []
+		},
+		{
+			"title": "Pirates Season : On Stranger Tides (2011)",
+			"id": "KaoWtXAROw3AzKRFjDEmQ",
+			"url": "https://www.cineworld.co.uk/films/pirates-season-on-stranger-tides-2011/ho00013790#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013790&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PiratesSeasonOnStrangerTides2011/HO00013790/TV_SmallPosterImage/20251014-063632510.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 137,
+			"screenings": []
+		},
+		{
+			"title": "Pirates Season : Salazar's Revenge (2017)",
+			"id": "o7Ikqu4IMD_M1rgpbWkCw",
+			"url": "https://www.cineworld.co.uk/films/pirates-season-salazars-revenge-2017/ho00013791#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013791&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/PiratesSeasonSalazarsRevenge2017/HO00013791/TV_SmallPosterImage/20251015-104536026.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/12A.png",
+				"alt": "No-one younger than 12 may see a '12A' film in a cinema unless accompanied by an adult. Responsibility for allowing under-12s to view lies with the accompanying or supervising adult."
+			},
+			"genre": "Action",
+			"duration_minutes": 129,
+			"screenings": []
+		},
+		{
+			"title": "Secret Screening 18",
+			"id": "erlLeHQN-zJZMjp1yDxE3",
+			"url": "https://www.cineworld.co.uk/films/secret-screening-18/ho00013724#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013724&view-mode=list",
+			"poster": {
+				"url": "https://regalcdn.azureedge.net/CW/SecretScreening18/HO00013724/TV_SmallPosterImage/20251021-104923203.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/18.png",
+				"alt": "No-one younger than 18 may see an '18' film in a cinema."
+			},
+			"genre": "",
+			"duration_minutes": 90,
+			"screenings": []
+		},
+		{
+			"title": "See Film First (SFF) : Wicked: For Good - SKY VIP",
+			"id": "8DsDnyVnPPz6rMNH-4rPJ",
+			"url": "https://www.cineworld.co.uk/films/see-film-first-sff-wicked-for-good-sky-vip/ho00013792#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013792&view-mode=list",
+			"poster": {
+				"url": "/xmedia/img/10108/film.placeholder.poster.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/TBC.png",
+				"alt": "To be confirmed - in some instances films have not yet been certified."
+			},
+			"genre": "Comedy",
+			"duration_minutes": 138,
+			"screenings": []
+		},
+		{
+			"title": "IFF 2025: Deep Sky",
+			"id": "OwAD0VSno41d1vE8thS-G",
+			"url": "https://www.cineworld.co.uk/films/iff-2025-deep-sky/ho00013765#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013765&view-mode=list",
+			"poster": {
+				"url": "/xmedia/img/10108/film.placeholder.poster.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/U.png",
+				"alt": "It is impossible to predict what might upset any particular child. But a 'U' film should be suitable for audiences aged four years and over. 'U' films should be set within a positive moral framework and should offer reassuring counterbalances to any violence, threat or horror."
+			},
+			"genre": "Documentary",
+			"duration_minutes": 40,
+			"screenings": []
+		},
+		{
+			"title": "Heat (30th Anniversary)",
+			"id": "HPNTyULpUTlYCwM-2aK8E",
+			"url": "https://www.cineworld.co.uk/films/heat-30th-anniversary/ho00013875#/buy-tickets-by-film?in-cinema=068&at=2025-10-29&for-movie=ho00013875&view-mode=list",
+			"poster": {
+				"url": "/xmedia/img/10108/film.placeholder.poster.jpg"
+			},
+			"rating": {
+				"url": "https://www.cineworld.co.uk/xmedia/img/10108/rating/15.png",
+				"alt": "No-one younger than 15 may see a '15' film in a cinema."
+			},
+			"genre": "Action",
+			"duration_minutes": 171,
+			"screenings": []
+		}
+	]
+}

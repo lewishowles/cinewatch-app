@@ -4,7 +4,7 @@
 			Best combinations
 
 			<template #actions>
-				<ui-button icon-start="icon-arrow-left" class="button--muted" @click="goToSearch">
+				<ui-button icon-start="icon-reload" class="button--muted" @click="goToSearch">
 					Start again
 				</ui-button>
 			</template>
@@ -15,7 +15,7 @@
 				<div class="flex justify-between items-center mb-2">
 					You selected {{ selectedFilmsCount }} films:
 
-					<ui-button class="button--muted" @click="goToList">
+					<ui-button icon-start="icon-arrow-left" class="button--muted" @click="goToList">
 						Change selection
 					</ui-button>
 				</div>
