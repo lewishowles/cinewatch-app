@@ -23,6 +23,10 @@ export default function useFilmFinder() {
 	const films = computed(() => getPropertyValue(data.value, "films"));
 	// Whether we have film details available.
 	const haveFilms = computed(() => !isLoading.value && isNonEmptyArray(films.value));
+	// The details of the available dates.
+	const dates = computed(() => getPropertyValue(branch.value, "dates"));
+	// Whether we have date details available.
+	const haveDates = computed(() => !isLoading.value && isNonEmptyArray(dates.value));
 
 	// The total number of films available to book.
 	const totalFilmsCount = computed(() => {
@@ -74,7 +78,6 @@ export default function useFilmFinder() {
 			data.value = null;
 
 			const response = await get("cineworld/films", { url });
-			// const response = await import("@/mock-data/cineworld-films.json").then(m => m.default);
 
 			if (!isNonEmptyObject(response)) {
 				throw new Error(`Expected non-empty object <response>, received ${getFriendlyDisplay(response)}`);
@@ -89,20 +92,22 @@ export default function useFilmFinder() {
 	}
 
 	return {
-		data,
-		isLoading,
-		isReady,
-		findFilms,
-		branch,
-		haveBranch,
-		films,
-		haveFilms,
-		totalFilmsCount,
 		availableFilms,
 		availableFilmsCount,
+		branch,
+		data,
+		dates,
+		films,
+		findFilms,
 		haveAvailableFilms,
+		haveBranch,
+		haveDates,
+		haveFilms,
+		haveUpcomingFilms,
+		isLoading,
+		isReady,
+		totalFilmsCount,
 		upcomingFilms,
 		upcomingFilmsCount,
-		haveUpcomingFilms,
 	};
 }

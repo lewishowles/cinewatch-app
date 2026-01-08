@@ -125,7 +125,8 @@ function storeFavouriteBranch() {
 		return;
 	}
 
-	// If our favourite already exists, update its count.
+	// If our favourite already exists, update its count so that we can order
+	// branches by frequency of use.
 	const currentFavourite = userFavourites.value.find(favourite => favourite.name === branch.value.name);
 
 	if (currentFavourite) {

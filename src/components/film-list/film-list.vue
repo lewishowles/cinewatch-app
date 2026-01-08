@@ -37,6 +37,16 @@
 				<ui-button class="button--muted text-sm self-start" @click="openModal(FilmListHelpDialog)">
 					Get help
 				</ui-button>
+
+				<div class="border-t border-grey-200" />
+
+				<ol v-if="haveDates" class="text-sm flex gap-4 items-center">
+					<li v-for="date in dates" :key="date.date">
+						<ui-button class="button--muted">
+							{{ date.day }}
+						</ui-button>
+					</li>
+				</ol>
 			</div>
 
 			<div class="flex flex-col gap-4 mb-20" data-test="film-list-list">
@@ -83,13 +93,14 @@ import PageHeader from "@/components/layout/page-header/page-header.vue";
 
 const { openModal } = useModalDialog();
 // The branch and film details retrieved by our film finder.
-const { isLoading, branch, haveBranch, haveFilms, totalFilmsCount, availableFilms, availableFilmsCount } = useFilmFinder();
+const { isLoading, branch, haveBranch, dates, haveDates, haveFilms, totalFilmsCount, availableFilms, availableFilmsCount } = useFilmFinder();
 // Allow the user to go back and pick another branch.
 const { goToSearch, goToSets } = useStageManager();
 // Set up the process of calculating the best film sets.
 const { filmScreeningTypes, selectedFilmsCount } = useFilmSetCalculator();
 
-// Initialise our selected screenings.
+// Initialise our selected screenings data, providing a boilerplate for each
+// film.
 if (haveFilms.value) {
 	availableFilms.value.forEach(film => {
 		if (!Object.hasOwn(filmScreeningTypes.value, film.id)) {
