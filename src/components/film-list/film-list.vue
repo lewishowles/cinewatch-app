@@ -40,9 +40,9 @@
 
 				<div class="border-t border-grey-200" />
 
-				<ol v-if="haveDates" class="text-sm flex gap-4 items-center">
-					<li v-for="date in dates" :key="date.date">
-						<ui-button class="button--muted">
+				<ol v-if="haveDates && haveBranchUrl" class="text-sm flex gap-4 items-center">
+					<li v-for="(date, dateButtonIndex) in dates" :key="date.date">
+						<ui-button :class="{ 'button--primary': isDateSelected(date.date, dateButtonIndex), 'button--muted': !isDateSelected(date.date, dateButtonIndex) }" @click="changeDate(date.date)">
 							{{ date.day }}
 						</ui-button>
 					</li>
@@ -82,10 +82,13 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+import { get } from "@lewishowles/helpers/object";
+import { isNonEmptyString } from "@lewishowles/helpers/string";
+import { useModalDialog } from "@lewishowles/components";
 import useFilmFinder from "@/composables/use-film-finder/use-film-finder";
 import useFilmSetCalculator from "@/composables/use-film-set-calculator/use-film-set-calculator";
 import useStageManager from "@/composables/use-stage-manager/use-stage-manager";
-import { useModalDialog } from "@lewishowles/components";
 
 import AvailableFilm from "@/components/available-film/available-film.vue";
 import FilmListHelpDialog from "./dialogs/film-list-help-dialog/film-list-help-dialog.vue";
@@ -93,11 +96,16 @@ import PageHeader from "@/components/layout/page-header/page-header.vue";
 
 const { openModal } = useModalDialog();
 // The branch and film details retrieved by our film finder.
-const { isLoading, branch, haveBranch, dates, haveDates, haveFilms, totalFilmsCount, availableFilms, availableFilmsCount } = useFilmFinder();
+const { findFilms, isLoading, branch, haveBranch, selectedDate, haveSelectedDate, dates, haveDates, haveFilms, totalFilmsCount, availableFilms, availableFilmsCount } = useFilmFinder();
 // Allow the user to go back and pick another branch.
 const { goToSearch, goToSets } = useStageManager();
 // Set up the process of calculating the best film sets.
 const { filmScreeningTypes, selectedFilmsCount } = useFilmSetCalculator();
+// The URL used to access film details from this branch, which we need to allow
+// the user to select additional dates.
+const branchUrl = computed(() => get(branch.value, "url"));
+// Whether we have a branch URL
+const haveBranchUrl = computed(() => isNonEmptyString(branchUrl.value));
 
 // Initialise our selected screenings data, providing a boilerplate for each
 // film.
@@ -107,6 +115,54 @@ if (haveFilms.value) {
 			filmScreeningTypes.value[film.id] = {};
 		}
 	});
+}
+
+/**
+ * Determine whether the given date is the selected date. If there is no
+ * selected date, default to the first date.
+ *
+ * @param  {string}  date
+ *     The date to compare to selectedDate,
+ * @param  {number}  dateIndex
+ *     The index of the date in the list of available dates.
+ */
+function isDateSelected(date, dateIndex) {
+	if (!isNonEmptyString(date)) {
+		return false;
+	}
+
+	if (dateIndex === 0 && !haveSelectedDate.value) {
+		return true;
+	}
+
+	if (date === selectedDate.value) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * Change the displayed date by retrieving films again with the new date
+ * defined.
+ *
+ * @param  {string}  date
+ *     The date to change to, from the options provided by the cinema page.
+ */
+function changeDate(date) {
+	if (!isNonEmptyString(date)) {
+		console.error("film-list[changeDate]: Could not find a date to change to.");
+
+		return;
+	}
+
+	if (!haveBranchUrl.value) {
+		console.error("film-list[changeDate]: Could not find the branch URL to load films from.");
+
+		return;
+	}
+
+	findFilms(branchUrl.value, date);
 }
 
 /**

@@ -2,6 +2,7 @@ import { arrayLength, isNonEmptyArray } from "@lewishowles/helpers/array";
 import { computed, ref } from "vue";
 import { get as getPropertyValue, isNonEmptyObject } from "@lewishowles/helpers/object";
 import { getFriendlyDisplay } from "@lewishowles/helpers/general";
+import { isNonEmptyString } from "@lewishowles/helpers/string";
 import useApi from "@/composables/use-api/use-api";
 
 // Our API helpers. These are external to our function so that they can be
@@ -23,6 +24,10 @@ export default function useFilmFinder() {
 	const films = computed(() => getPropertyValue(data.value, "films"));
 	// Whether we have film details available.
 	const haveFilms = computed(() => !isLoading.value && isNonEmptyArray(films.value));
+	// Any user-selected date.
+	const selectedDate = computed(() => getPropertyValue(data.value, "selected_date"));
+	// Whether a selected date has been provided.
+	const haveSelectedDate = computed(() => isNonEmptyString(selectedDate.value));
 	// The details of the available dates.
 	const dates = computed(() => getPropertyValue(branch.value, "dates"));
 	// Whether we have date details available.
@@ -71,13 +76,22 @@ export default function useFilmFinder() {
 	 *
 	 * @param  {string}  url
 	 *     The URL from which to load data.
+	 *
+	 * @param  {string}  date
+	 *     The date to select when choosing films.
 	 */
-	async function findFilms(url) {
+	async function findFilms(url, date) {
 		try {
 			// Since we're loading new data, reset any existing data.
 			data.value = null;
 
-			const response = await get("cineworld/films", { url });
+			const parameters = { url };
+
+			if (isNonEmptyString(date)) {
+				parameters.date = date;
+			}
+
+			const response = await get("cineworld/films", parameters);
 
 			if (!isNonEmptyObject(response)) {
 				throw new Error(`Expected non-empty object <response>, received ${getFriendlyDisplay(response)}`);
@@ -103,9 +117,11 @@ export default function useFilmFinder() {
 		haveBranch,
 		haveDates,
 		haveFilms,
+		haveSelectedDate,
 		haveUpcomingFilms,
 		isLoading,
 		isReady,
+		selectedDate,
 		totalFilmsCount,
 		upcomingFilms,
 		upcomingFilmsCount,
