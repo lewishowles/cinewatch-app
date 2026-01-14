@@ -13,7 +13,7 @@
 		"test:component": "cypress run --component",
 		"test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e --config baseUrl=http://localhost:4173/cinewatch/'",
 		"lint": "eslint . --fix",
-		"deploy": "vite build; gh-pages -d dist"
+		"deploy": "bun run build; gh-pages -d dist --cname cinewatch.howles.dev"
 	},
 	"dependencies": {
 		"@lewishowles/components": "^1.5.0",
