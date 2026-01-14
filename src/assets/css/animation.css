@@ -1,4 +1,3 @@
-/*
 @utility animate-fast {
 	@media (prefers-reduced-motion: no-preference) {
 		--animation-duration: 150ms;
@@ -66,132 +65,61 @@
 		animation-delay: calc(sibling-index() * 50ms);
 	}
 }
-*/
 
-@layer utilities {
-	.animate-fast {
-		@media (prefers-reduced-motion: no-preference) {
-			--animation-duration: 150ms;
-		}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
 	}
 
-	.animate-fade-in {
-		@media (prefers-reduced-motion: no-preference) {
-			opacity: 0;
-			animation-duration: var(--animation-duration, 250ms);
-			animation-timing-function: ease-in-out;
-			animation-fill-mode: forwards;
-			animation-name: fadeIn;
-		}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(0.5rem);
 	}
 
-	.animate-fade-in-up {
-		@media (prefers-reduced-motion: no-preference) {
-			opacity: 0;
-			animation-duration: var(--animation-duration, 250ms);
-			animation-timing-function: ease-in-out;
-			animation-fill-mode: forwards;
-			animation-name: fadeInUp;
-		}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(-0.5rem);
 	}
 
-	.animate-fade-in-right {
-		@media (prefers-reduced-motion: no-preference) {
-			opacity: 0;
-			animation-duration: var(--animation-duration, 250ms);
-			animation-timing-function: ease-in-out;
-			animation-fill-mode: forwards;
-			animation-name: fadeInRight;
-		}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-0.5rem);
 	}
 
-	.animate-fade-in-down {
-		@media (prefers-reduced-motion: no-preference) {
-			opacity: 0;
-			animation-duration: var(--animation-duration, 250ms);
-			animation-timing-function: ease-in-out;
-			animation-fill-mode: forwards;
-			animation-name: fadeInDown;
-		}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(0.5rem);
 	}
 
-	.animate-fade-in-left {
-		@media (prefers-reduced-motion: no-preference) {
-			opacity: 0;
-			animation-duration: var(--animation-duration, 250ms);
-			animation-timing-function: ease-in-out;
-			animation-fill-mode: forwards;
-			animation-name: fadeInLeft;
-		}
-	}
-
-	.delay-micro {
-		@media (prefers-reduced-motion: no-preference) {
-			animation-delay: calc(sibling-index() * 10ms);
-		}
-	}
-
-	.delay {
-		@media (prefers-reduced-motion: no-preference) {
-			animation-delay: calc(sibling-index() * 50ms);
-		}
-	}
-
-	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
-
-		100% {
-			opacity: 1;
-		}
-	}
-
-	@keyframes fadeInUp {
-		0% {
-			opacity: 0;
-			transform: translateY(0.5rem);
-		}
-
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	@keyframes fadeInRight {
-		0% {
-			opacity: 0;
-			transform: translateX(-0.5rem);
-		}
-
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	@keyframes fadeInDown {
-		0% {
-			opacity: 0;
-			transform: translateY(-0.5rem);
-		}
-
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	@keyframes fadeInLeft {
-		0% {
-			opacity: 0;
-			transform: translateX(0.5rem);
-		}
-
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

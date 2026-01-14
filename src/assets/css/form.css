@@ -1,11 +1,9 @@
-@reference "./main.css";
-
-/*
 @utility form-input {
 	@apply block w-full rounded-md px-3 py-2 text-grey-700 shadow-xs outline-hidden;
-	@apply focus:caret-purple-800;
-	@apply dark:bg-transparent dark:text-white;
-	@apply dark:focus:caret-purple-400;
+
+	@variant dark {
+		@apply bg-transparent text-white;
+	}
 }
 
 @utility form-select {
@@ -82,91 +80,8 @@
 @utility form-field--error {
 	@apply ring-red-600 dark:ring-red-300;
 }
-*/
 
 @layer components {
-	.form-input {
-		@apply block w-full rounded-md px-3 py-2 text-grey-700 shadow-xs outline-hidden;
-		@apply focus:caret-purple-800;
-		@apply dark:bg-transparent dark:text-white;
-		@apply dark:focus:caret-purple-400;
-	}
-
-	.form-select {
-		@apply block w-full appearance-none rounded-md py-2 ps-3 pe-[2.5em] text-grey-700 shadow-xs outline-hidden;
-		@apply dark:bg-transparent dark:text-white;
-
-		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-		background-position: right 0.5rem center;
-		background-repeat: no-repeat;
-		background-size: 1.5em 1.5em;
-
-		@variant dark {
-			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff90' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-		}
-
-		.form-field--error & {
-			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23dc2625' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-
-			@variant dark {
-				background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23fda5a5' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-			}
-		}
-	}
-
-	.form-checkbox {
-		@apply mt-0.5 size-4 shrink-0 appearance-none rounded-sm outline-hidden ring-1 ring-grey-300 transition-all;
-		@apply hover:ring-2 hover:ring-grey-500;
-		@apply focus:ring-2 focus:ring-purple-800;
-		@apply checked:bg-current checked:text-purple-800 checked:ring-current;
-		@apply checked:focus:ring-offset-2;
-		@apply dark:bg-white/20 dark:ring-white/30;
-		@apply dark:hover:ring-white/50;
-		@apply dark:focus:ring-purple-400;
-		@apply dark:checked:text-purple-400 dark:checked:ring-current;
-	}
-
-	.form-radio {
-		@apply size-4 appearance-none rounded-full outline-hidden ring-1 ring-grey-300 transition-all;
-		@apply dark:bg-white/20 dark:ring-white/30;
-		@apply hover:ring-2 hover:ring-grey-500;
-		@apply focus:ring-2 focus:ring-purple-800;
-		@apply checked:bg-current checked:text-purple-800 checked:ring-current;
-		@apply checked:focus:ring-offset-2;
-		@apply dark:hover:ring-white/50;
-		@apply dark:focus:ring-purple-400;
-		@apply dark:checked:text-purple-400 dark:checked:ring-current;
-	}
-
-	.button-group {
-		@apply button--muted cursor-pointer rounded-none transition-all;
-		@apply peer-focus:bg-grey-50 peer-focus:border-grey-400;
-		@apply peer-focus:outline-hidden peer-focus:ring-2 peer-focus:ring-purple-800 peer-focus:ring-offset-2;
-		@apply peer-checked:border-purple-900 peer-checked:bg-purple-800 peer-checked:text-white;
-		@apply peer-checked:peer-focus:bg-purple-800 peer-checked:peer-focus:text-white;
-		@apply dark:bg-white/20 dark:border-white/20;
-		@apply dark:peer-focus:bg-white/30 dark:peer-focus:border-white/20;
-		@apply dark:peer-checked:bg-purple-500 dark:peer-checked:border-purple-400;
-		@apply dark:peer-checked:peer-focus:bg-purple-600 dark:peer-checked:peer-focus:border-purple-500;
-		@apply dark:peer-focus:ring-purple-400;
-	}
-
-	.button-group--first {
-		@apply rounded-s-lg;
-	}
-
-	.button-group--middle {
-		@apply border-s-0;
-	}
-
-	.button-group--last {
-		@apply rounded-e-lg;
-	}
-
-	.form-field--error {
-		@apply ring-red-600 dark:ring-red-300;
-	}
-
 	[data-selector="form-field-wrapper"] {
 		@apply ring-1 ring-grey-300 rounded-md;
 		@apply dark:bg-white/20 dark:ring-white/30;

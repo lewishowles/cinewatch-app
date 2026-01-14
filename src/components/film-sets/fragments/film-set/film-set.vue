@@ -119,7 +119,7 @@ function openBookingPages() {
 </script>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "../../../../assets/css/main.css";
 
 .film-set-films {
 	@apply relative;

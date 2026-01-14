@@ -142,7 +142,7 @@ const dayChart = computed(() => {
 </script>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "../../../../../../assets/css/main.css";
 
 .film-set-metadata dd + dt {
 	@apply flex items-center gap-2;

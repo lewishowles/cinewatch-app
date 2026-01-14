@@ -23,7 +23,7 @@ const { openModal } = useModalDialog();
 </script>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "../../../../assets/css/main.css";
 
 .watch-settings li + li {
 	@apply flex items-center gap-4;
