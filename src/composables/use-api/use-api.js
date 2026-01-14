@@ -12,7 +12,7 @@ import { ref } from "vue";
 export default function useApi() {
 	// Our base URL, which is prepended to API calls. We do this so that the
 	// rest of the app doesn't have to think about where data comes from.
-	let baseUrl = "http://localhost:3000/api";
+	let baseUrl = `${import.meta.env.VITE_API_URL}/api`;
 
 	// Whether data is currently loading.
 	const isLoading = ref(false);
