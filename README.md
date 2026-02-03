@@ -10,4 +10,8 @@ Cinewatch currently only supports Cineworld. As Cinemas don't provide an accessi
 
 ## Planning
 
-The planning document for Cinewatch, outlining the requirements and decisions, can be found in Notion at <https://lewishowles.notion.site/Cinewatch-2852b9e31211800b8e08f09f2202f8f9>
+The planning document for Cinewatch, outlining the requirements and decisions, can be found in Notion at <https://lewishowles.notion.site/Cinewatch-2852b9e31211800b8e08f09f2202f8f9>.
+
+## Design
+
+The initial design for the Cinewatch app can be found in Sketch at <https://sketch.com/s/792d2611-2da3-40ea-ba94-1f0596051e06>.
